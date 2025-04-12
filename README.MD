@@ -43,6 +43,39 @@ flowchart TD
     G --> H[Return Compressed Archive and Log Details]
 ```
 
+## Project structure
+
+```mermaid
+graph TD
+    A[c++repoAPI]
+    B[c++repoAPI/CMakeLists.txt]
+    C[c++repoAPI/library.h]
+    D[c++repoAPI/library.cpp]
+    E[c++repoAPI/errorhandler]
+    F[c++repoAPI/errorhandler/ErrorCodes.h]
+    G[c++repoAPI/errorhandler/ErrorHandler.h]
+    H[c++repoAPI/errorhandler/ErrorHandler.cpp]
+    I[c++repoAPI/FileCompression]
+    J[c++repoAPI/FileCompression/CompressionAPI.h]
+    K[c++repoAPI/FileCompression/CompressionAPI.cpp]
+    L[c++repoAPI/tests]
+    M[c++repoAPI/tests/test_compression.cpp]
+
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+    A --> I
+    A --> L
+    E --> F
+    E --> G
+    E --> H
+    I --> J
+    I --> K
+    L --> M
+
+```
+
 ## Future Improvements
 - **Stream-Based Compression:**  
   Adding support for real-time, chunked compression.

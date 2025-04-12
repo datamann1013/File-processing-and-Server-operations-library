@@ -56,6 +56,20 @@ build CMakeFiles/C__APIRepo.dir/library.cpp.obj: CXX_COMPILER__C__APIRepo_unscan
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir
 
+build CMakeFiles/C__APIRepo.dir/errorhandler/ErrorHandler.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/errorhandler/ErrorHandler.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\errorhandler\ErrorHandler.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\errorhandler
+
+build CMakeFiles/C__APIRepo.dir/FileComrepssion/CompressionAPI.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileComrepssion/CompressionAPI.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileComrepssion\CompressionAPI.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileComrepssion
+
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target C__APIRepo
@@ -64,7 +78,7 @@ build CMakeFiles/C__APIRepo.dir/library.cpp.obj: CXX_COMPILER__C__APIRepo_unscan
 #############################################
 # Link the shared library libC__APIRepo.dll
 
-build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj
+build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj CMakeFiles/C__APIRepo.dir/errorhandler/ErrorHandler.cpp.obj CMakeFiles/C__APIRepo.dir/FileComrepssion/CompressionAPI.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
