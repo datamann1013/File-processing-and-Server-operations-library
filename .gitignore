@@ -1,0 +1,12 @@
+cmake-build-debug/
+build/
+*.o
+*.obj
+*.exe
+*.out
+*.suo
+*.sln
+*.vcxproj
+CMakeCache.txt
+cmake_install.cmake
+cmake_pch.hxx
