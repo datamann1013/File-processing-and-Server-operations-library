@@ -29,7 +29,7 @@ This modular C++ library is designed for high-performance file processing and se
   For example, network security modules, advanced data serialization, and dynamic plugin installers.
 
 ## Architecture Diagram
-Below is a sample Mermaid diagram illustrating the high-level architecture:
+Below is a sample Mermaid diagram illustrating the high-level architecture ( for now only component is File compression):
 
 ```mermaid
 flowchart TD
@@ -37,7 +37,7 @@ flowchart TD
     B --> C{File Count?}
     C -- Single File --> D[Apply Single File Compression Options]
     C -- Multiple Files --> E[Aggregate Files & Global Compression]
-    D --> F[Select Compatible Compression (Default: LZMA)]
+    D --> F["Select Compatible Compression (Default: LZMA)"]
     E --> F
     F --> G[Perform Checksum & Seal Verification]
     G --> H[Return Compressed Archive and Log Details]

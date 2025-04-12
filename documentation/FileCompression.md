@@ -8,6 +8,21 @@
 ## Overview
 This standalone, functional module compresses an array (or blob) of files provided as a JSON document. If no compression method is specified, the system defaults to lossless LZMA. Users can select compatible methods based on file type—for example, H.264 for videos and JPEG for images. There is an option to pre-compress individual files using additional (future) parameters; details on these parameters will be added later. If the JSON sets the encryption flag to true, an informative message ("Encryption is not yet implemented") is returned.
 
+## Architecture Diagram
+Below is a sample Mermaid diagram illustrating the high-level architecture:
+
+```mermaid
+flowchart TD
+    A[Server Startup] --> B[Receive File Blob/JSON]
+    B --> C{File Count?}
+    C -- Single File --> D[Apply Single File Compression Options]
+    C -- Multiple Files --> E[Aggregate Files & Global Compression]
+    D --> F["Select Compatible Compression (Default: LZMA)"]
+    E --> F
+    F --> G[Perform Checksum & Seal Verification]
+    G --> H[Return Compressed Archive and Log Details]
+```
+
 ## JSON / Blob Specification
 
 ### Purpose
