@@ -4,8 +4,8 @@
 #include "../FileCompression/CompressionAPI.h"
 #include "../errorhandler/ErrorCodes.h"
 
-// Test that valid JSON input for decompression returns SUCCESS and dummy data.
-TEST(DeCompressionAPITest, DecompressBlobValidInput) {
+// Test case: Valid JSON input for decompression returns SUCCESS and dummy decompressed data.
+TEST(DecompressionAPITest, ValidDecompressBlob) {
     std::string validJson = R"({
         "compressedData": "SomeCompressedData",
         "options": {
@@ -18,8 +18,8 @@ TEST(DeCompressionAPITest, DecompressBlobValidInput) {
     EXPECT_EQ(result.compressedData, "DummyDecompressedData");
 }
 
-// Test that an empty JSON input for decompression returns an error.
-TEST(DeCompressionAPITest, DecompressBlobEmptyInput) {
+// Test case: Empty JSON input for decompression should return invalid JSON error.
+TEST(DecompressionAPITest, EmptyDecompressBlob) {
     std::string emptyJson = "";
     auto result = CompressionAPI::decompressBlob(emptyJson);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::EU1);

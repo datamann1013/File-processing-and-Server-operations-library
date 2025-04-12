@@ -1,24 +1,11 @@
 // Created by data0 on 11.04.2025.
 
-#include "gtest/gtest.h"
-#include "../FileCompression/CompressionAPI.h"
-#include "../Errorhandler//ErrorCodes.h"
-
-TEST(CompressionAPITest, CompressBlobValidInput) {
-    std::string validJson = R"({
-        "files": [
-            {
-                "fileName": "doc.txt",
-                "fileType": "txt",
-                "fileData": "Base64Data",
-                "lastModified": "2023-10-10T15:30:00Z",
-                "creationDate": "2023-09-01T12:00:00Z"
-            }#include <gtest/gtest.h>
+#include <gtest/gtest.h>
 #include "../FileCompression/CompressionAPI.h"
 #include "../errorhandler/ErrorCodes.h"
 
-// Test that valid JSON input for compression returns SUCCESS and dummy data.
-TEST(CompressionAPITest, CompressBlobValidInput) {
+// Test case: Valid JSON input should return SUCCESS and dummy compressed data.
+TEST(CompressionAPITest, ValidCompressBlob) {
     std::string validJson = R"({
         "files": [
             {
@@ -42,10 +29,9 @@ TEST(CompressionAPITest, CompressBlobValidInput) {
     EXPECT_EQ(result.compressedData, "DummyCompressedData");
 }
 
-// Test that an empty JSON input for compression returns an error.
-TEST(CompressionAPITest, CompressBlobEmptyInput) {
+// Test case: Empty JSON input should return an error for invalid JSON.
+TEST(CompressionAPITest, EmptyCompressBlob) {
     std::string emptyJson = "";
     auto result = CompressionAPI::compressBlob(emptyJson);
-    // Expect user-side error (EU1) for invalid JSON.
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::EU1);
 }

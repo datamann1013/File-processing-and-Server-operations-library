@@ -4,7 +4,8 @@
 #include <iostream>
 
 void ErrorHandler::logError(const std::string& module, ErrorCodes::Compression errorCode, const std::string& context) {
-    // Log the error to standard error. In a production system, this might log to a file or other system.
-    std::cerr << "[" << module << "] Error Code: " << ErrorCodes::toString(errorCode)
+    // Log standard error stream.
+    // Will log to database later
+    std::cerr << "[" << module << "] Error Code: " << static_cast<int>(errorCode)
               << " | Context: " << context << std::endl;
 }

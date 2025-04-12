@@ -4,24 +4,26 @@
 #define COMPRESSION_API_H
 
 #include <string>
-#include "../errorhandler/ErrorCodes.h"  // Adjust path as necessary.
+#include "../errorhandler/ErrorCodes.h"
 
 namespace CompressionAPI {
 
-    // Structure to hold the result of a compression operation.
+    // Structure to hold the results of a compression or decompression operation.
     struct CompressionResult {
-        ErrorCodes::Compression errorCode;  // Error code from the compression operation.
-        std::string compressedData;          // Placeholder for compressed data.
+        ErrorCodes::Compression errorCode;  // Holds an error code.
+        std::string compressedData;          // The output data (or decompressed data).
     };
 
-    // Function to compress a blob of files provided as a JSON string.
-    // Currently a stub that returns dummy compressed data.
+    // Compresses a blob of files described by a JSON string.
+    // A stub implementation for demonstration. In a full implementation, this
+    // will parse JSON, select a compression algorithm, perform compression, etc.
     CompressionResult compressBlob(const std::string& jsonInput);
 
-    // Function to decompress a compressed blob provided as a JSON string.
-    // Stub implementation for demonstration purposes.
+    // Decompresses a compressed blob described by a JSON string.
+    // A stub implementation for demonstration.
     CompressionResult decompressBlob(const std::string& jsonInput);
 
+    // Future: Additional functions for specific compression algorithms can be added here.
 }
 
 #endif // COMPRESSION_API_H
