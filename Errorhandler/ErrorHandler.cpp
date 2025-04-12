@@ -3,8 +3,8 @@
 #include "ErrorHandler.h"
 #include <iostream>
 
-void ErrorHandler::logError(const std::string& module, int errorCode, const std::string& context) {
-    // For now, simply print the error to standard error.
-    std::cerr << "[" << module << "] Error Code: " << errorCode
+void ErrorHandler::logError(const std::string& module, ErrorCodes::Compression errorCode, const std::string& context) {
+    // Log the error to standard error. In a production system, this might log to a file or other system.
+    std::cerr << "[" << module << "] Error Code: " << ErrorCodes::toString(errorCode)
               << " | Context: " << context << std::endl;
 }

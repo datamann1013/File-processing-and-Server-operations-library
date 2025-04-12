@@ -8,8 +8,8 @@ add_library(C__APIRepo SHARED library.cpp
         errorhandler/ErrorCodes.h
         errorhandler/ErrorHandler.cpp
         errorhandler/ErrorHandler.h
-        FileComrepssion/CompressionAPI.cpp
-        FileComrepssion/CompressionAPI.h)
+        FileCompression/CompressionAPI.cpp
+        FileCompression/CompressionAPI.h)
 
 # Executable testing library
 add_executable(example library.cpp)
