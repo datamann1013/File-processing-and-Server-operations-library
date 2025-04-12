@@ -56,19 +56,19 @@ build CMakeFiles/C__APIRepo.dir/library.cpp.obj: CXX_COMPILER__C__APIRepo_unscan
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir
 
-build CMakeFiles/C__APIRepo.dir/errorhandler/ErrorHandler.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/errorhandler/ErrorHandler.cpp || cmake_object_order_depends_target_C__APIRepo
+build CMakeFiles/C__APIRepo.dir/Errorhandler/ErrorHandler.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Errorhandler/ErrorHandler.cpp || cmake_object_order_depends_target_C__APIRepo
   DEFINES = -DC__APIRepo_EXPORTS
-  DEP_FILE = CMakeFiles\C__APIRepo.dir\errorhandler\ErrorHandler.cpp.obj.d
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\Errorhandler\ErrorHandler.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
-  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\errorhandler
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\Errorhandler
 
-build CMakeFiles/C__APIRepo.dir/FileComrepssion/CompressionAPI.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileComrepssion/CompressionAPI.cpp || cmake_object_order_depends_target_C__APIRepo
+build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionAPI.cpp || cmake_object_order_depends_target_C__APIRepo
   DEFINES = -DC__APIRepo_EXPORTS
-  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileComrepssion\CompressionAPI.cpp.obj.d
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionAPI.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
-  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileComrepssion
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression
 
 
 # =============================================================================
@@ -78,7 +78,7 @@ build CMakeFiles/C__APIRepo.dir/FileComrepssion/CompressionAPI.cpp.obj: CXX_COMP
 #############################################
 # Link the shared library libC__APIRepo.dll
 
-build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj CMakeFiles/C__APIRepo.dir/errorhandler/ErrorHandler.cpp.obj CMakeFiles/C__APIRepo.dir/FileComrepssion/CompressionAPI.cpp.obj
+build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj CMakeFiles/C__APIRepo.dir/Errorhandler/ErrorHandler.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
@@ -88,6 +88,39 @@ build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRe
   TARGET_FILE = libC__APIRepo.dll
   TARGET_IMPLIB = libC__APIRepo.dll.a
   TARGET_PDB = C__APIRepo.dll.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target example
+
+
+#############################################
+# Order-only phony target for example
+
+build cmake_object_order_depends_target_example: phony || .
+
+build CMakeFiles/example.dir/library.cpp.obj: CXX_COMPILER__example_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/library.cpp || cmake_object_order_depends_target_example
+  DEP_FILE = CMakeFiles\example.dir\library.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\example.dir
+  OBJECT_FILE_DIR = CMakeFiles\example.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target example
+
+
+#############################################
+# Link the executable example.exe
+
+build example.exe: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/library.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lcpprepoAPI  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\example.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = example.exe
+  TARGET_IMPLIB = libexample.dll.a
+  TARGET_PDB = example.exe.dbg
 
 
 #############################################
@@ -192,7 +225,7 @@ build Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj
 
 build Google_tests/Google_Tests_run.exe: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
-  LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  -lFileCompression_lib  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  -lFileCompression  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -612,6 +645,8 @@ build Google_Tests_run: phony Google_tests/Google_Tests_run.exe
 
 build Google_Tests_run.exe: phony Google_tests/Google_Tests_run.exe
 
+build example: phony example.exe
+
 build gmock: phony lib/libgmock.a
 
 build gmock_main: phony lib/libgmock_main.a
@@ -636,7 +671,7 @@ build libgtest_main.a: phony lib/libgtest_main.a
 #############################################
 # Folder: C:/Users/data0/CLionProjects/C++APIRepo/cmake-build-debug
 
-build all: phony libC__APIRepo.dll Google_tests/all
+build all: phony libC__APIRepo.dll example.exe Google_tests/all
 
 # =============================================================================
 
