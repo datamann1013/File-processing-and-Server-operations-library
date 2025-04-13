@@ -15,6 +15,7 @@ add_executable(CompressionDecompressionTests
 
 target_link_libraries(CompressionDecompressionTests gtest gtest_main)
 target_link_libraries(CompressionDecompressionTests FileCompression)
+target_link_libraries(CompressionDecompressionTests ErrorHandler)
 
 enable_testing()
 add_test(NAME runTests COMMAND CompressionDecompressionTests)

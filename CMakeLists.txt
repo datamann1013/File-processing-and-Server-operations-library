@@ -6,8 +6,15 @@ set(CMAKE_CXX_STANDARD 20)
 # Build main library
 add_library(C__APIRepo SHARED library.cpp
         errorhandler/ErrorCodes.h
+       )
+
+add_library(ErrorHandler SHARED library.cpp
+        errorhandler/ErrorCodes.h
         errorhandler/ErrorHandler.cpp
         errorhandler/ErrorHandler.h
+)
+
+add_library(FileCompression SHARED library.cpp
         FileCompression/CompressionAPI.cpp
         FileCompression/CompressionAPI.h
         FileCompression/ICompressor.h
@@ -18,10 +25,12 @@ add_library(C__APIRepo SHARED library.cpp
         FileCompression/CompressionMethods/H264/H264Compressor.cpp
         FileCompression/CompressionMethods/H264/H264Compressor.h
         FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp
-        FileCompression/CompressionMethods/JPEG/JPEGCompressor.h)
+        FileCompression/CompressionMethods/JPEG/JPEGCompressor.h
+)
 
 # Executable testing library
 add_executable(example library.cpp)
 target_link_libraries(example PRIVATE cpprepoAPI)
+target_link_libraries(FileCompression PRIVATE ErrorHandler)
 
 add_subdirectory(Google_tests)
