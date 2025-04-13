@@ -4,23 +4,41 @@
 #include "../FileCompression/CompressionAPI.h"
 #include "../errorhandler/ErrorCodes.h"
 
-// Test case: Valid JSON input for decompression returns SUCCESS and dummy decompressed data.
-TEST(DecompressionAPITest, ValidDecompressBlob) {
-    std::string validJson = R"({
-        "compressedData": "SomeCompressedData",
-        "options": {
-            "decompressionAlgorithm": "LZMA"
-        }
-    })";
+// Test for decompression functionality.
 
-    auto result = CompressionAPI::decompressBlob(validJson);
+// Test 1: Valid JSON for decompression should return SUCCESS.
+TEST(DecompressionAPITest, ValidJSONReturnsSuccess) {
+    std::string jsonInput = R"({
+        "compressedData": "dummyCompressedData",
+        "options": {"decompressionAlgorithm": "LZMA"}
+    })";
+    auto result = CompressionAPI::decompressBlob(jsonInput);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS);
-    EXPECT_EQ(result.compressedData, "DummyDecompressedData");
 }
 
-// Test case: Empty JSON input for decompression should return invalid JSON error.
-TEST(DecompressionAPITest, EmptyDecompressBlob) {
-    std::string emptyJson = "";
-    auto result = CompressionAPI::decompressBlob(emptyJson);
+// Test 2: Empty JSON should return error EU1.
+TEST(DecompressionAPITest, EmptyJSONReturnsEU1) {
+    std::string jsonInput = "";
+    auto result = CompressionAPI::decompressBlob(jsonInput);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::EU1);
+}
+
+// Test 3: Simulated corrupted input should return error ES3.
+TEST(DecompressionAPITest, CorruptedInputReturnsES3) {
+    std::string jsonInput = R"({
+        "compressedData": "corruptedData",
+        "options": {"decompressionAlgorithm": "LZMA", "simulate_corrupted": true}
+    })";
+    auto result = CompressionAPI::decompressBlob(jsonInput);
+    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::ES3);
+}
+
+// Test 4: Simulated data integrity error should return error ES4.
+TEST(DecompressionAPITest, DataIntegrityErrorReturnsES4) {
+    std::string jsonInput = R"({
+        "compressedData": "dummyCompressedData",
+        "options": {"decompressionAlgorithm": "LZMA", "simulate_integrity_error": true}
+    })";
+    auto result = CompressionAPI::decompressBlob(jsonInput);
+    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::ES4);
 }

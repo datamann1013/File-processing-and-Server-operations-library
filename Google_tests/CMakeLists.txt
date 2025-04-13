@@ -5,14 +5,16 @@ add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 # Make test excecutable
-add_executable(Google_Tests_run
+add_executable(CompressionDecompressionTests
         FileCompressionTest.cpp
         FileDeCompressionTest.cpp
         CompressionMethodTests.cpp
+        dummyFileGenerator.cpp
+        dummyFileGenerator.h
 )
 
-target_link_libraries(Google_Tests_run gtest gtest_main)
-target_link_libraries(Google_Tests_run FileCompression)
+target_link_libraries(CompressionDecompressionTests gtest gtest_main)
+target_link_libraries(CompressionDecompressionTests FileCompression)
 
 enable_testing()
-add_test(NAME runTests COMMAND Google_Tests_run)
+add_test(NAME runTests COMMAND CompressionDecompressionTests)

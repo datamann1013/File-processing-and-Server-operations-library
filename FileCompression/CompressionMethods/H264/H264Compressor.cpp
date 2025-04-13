@@ -5,7 +5,8 @@
 
 CompressionAPI::CompressionResult H264Compressor::compress(const std::string &inputData) {
     CompressionAPI::CompressionResult result;
-    // Future implementation: Apply H.264 video compression.
+    // - Use H.264 algorithm to compress video data.
+    // - Handle the necessary encoding parameters.
     ErrorHandler::logError("H264Compressor::compress", ErrorCodes::Compression::ENN99, "H.264 compress not implemented.");
     result.errorCode = ErrorCodes::Compression::ENN99;
     result.data = "";

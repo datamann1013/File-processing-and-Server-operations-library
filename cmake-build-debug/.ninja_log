@@ -1,15 +1,18 @@
 # ninja log v6
-60	1978	7661774880349828	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	d3b60e86c2e7e55a
-4	714	7662398275067529	build.ninja	d8961f6da3c45ed9
 6	2321	7660816220755534	Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	93430b0f9e29de4f
-52	14109	7661774880258389	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	78a5d73fc1edfeb3
+15	420	7662417983815791	Google_tests/CMakeFiles/Google_Tests_run.dir/dummyFileGenerator.cpp.obj	179d4b16913f9855
+60	1978	7661774880349828	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	d3b60e86c2e7e55a
+4	714	7662418857674484	build.ninja	d8961f6da3c45ed9
 9549	9889	7660816316189802	lib/libgmock.a	254a22e662f3fe56
-4	48	7660825201428743	CMakeFiles/C__APIRepo.dir/Google_tests/FileCompression/testZip.cpp.obj	180cb9749d4fecb2
+52	14109	7661774880258389	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	78a5d73fc1edfeb3
 14112	19595	7661775020858522	lib/libgtest.a	cf8c711ea766e1b4
+4	48	7660825201428743	CMakeFiles/C__APIRepo.dir/Google_tests/FileCompression/testZip.cpp.obj	180cb9749d4fecb2
 19	350	7660824833183168	CMakeFiles/C__APIRepo.dir/library.cpp.obj	58b1441a89e88408
-48	154	7660825202852649	libC__APIRepo.dll	17f1b1fded61cfe8
-8	47	7660825201458746	CMakeFiles/C__APIRepo.dir/Google_tests/FileCompression/testUnzip.cpp.obj	3a75b08fa1475e0e
 19595	19706	7661775075693621	lib/libgtest_main.a	26cf39996c7dd2b7
+8	47	7660825201458746	CMakeFiles/C__APIRepo.dir/Google_tests/FileCompression/testUnzip.cpp.obj	3a75b08fa1475e0e
+48	154	7660825202852649	libC__APIRepo.dll	17f1b1fded61cfe8
 48	154	7660825202852649	libC__APIRepo.dll.a	17f1b1fded61cfe8
-76	2064	7661774880499802	Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj	2424c8a797a7ffd3
-68	2072	7661774880419833	Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj	7dd8a312f39e5dcf
+9	1360	7662417983750875	Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj	2424c8a797a7ffd3
+5	1447	7662417983710873	Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj	7dd8a312f39e5dcf
+12	1423	7662417983780914	Google_tests/CMakeFiles/Google_Tests_run.dir/CompressionMethodTests.cpp.obj	4f8f52403991c44f
+2	310	7662418857674484	build.ninja	d8961f6da3c45ed9

@@ -172,6 +172,43 @@ void generateTestFile(const std::string& fileName, size_t fileSizeInMB) {
   - Validate that each key action logs an informational code (e.g., i1, i2) and that only the last 100 entries are retained.
   - Confirm that the audit log correctly tracks "sealing" operations.
 
+### Current implemented tests
+
+- **JSON Parsing:**
+    - Valid JSON returns `SUCCESS`.
+    - Empty/malformed JSON returns error `EU1`.
+
+- **Compression Algorithm Selection:**
+    - Specific algorithm (e.g., "LZMA") returns `SUCCESS`.
+    - No algorithm specified defaults to LZMA → `SUCCESS`.
+    - Unsupported file type returns error `EU2`.
+
+- **Precompression Parameters:**
+    - Valid parameters return `SUCCESS`.
+    - Missing/invalid parameters trigger warning `WU1`.
+
+- **File Metadata Handling:**
+    - Correct metadata (lastModified, creationDate) returns `SUCCESS`.
+    - Missing metadata triggers a warning.
+
+- **Compression Functionality:**
+    - `compressBlob` returns a compressed file with `SUCCESS`.
+    - Individual methods (LZMA, ZIP, H.264, JPEG) tested separately.
+    - Compression ratio test: Run each file size (1MB, 50MB, 100MB, 1GB, 5GB, 15GB) 5 times; average ratio must be below expected threshold.
+
+- **Decompression Functionality:**
+    - `decompressBlob` returns decompressed data with `SUCCESS`.
+    - Corrupted input returns error `ES3`.
+    - Data integrity issues return error `ES4`.
+
+- **Checksum & Data Integrity:**
+    - Simulated checksum mismatch returns error `ES2`.
+    - Correct checksum returns `SUCCESS`.
+
+- **Encryption Flag:**
+    - Encryption requested returns warning `WU2` (or `SUCCESS` if implemented).
+
+
 ## Error Code Overview (Compression Specific)
 | **Code** | **Type**   | **Location** | **Description**                                                        |
 |----------|------------|--------------|------------------------------------------------------------------------|
