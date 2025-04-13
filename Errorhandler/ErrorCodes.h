@@ -28,7 +28,9 @@ namespace ErrorCodes {
         WU2, //Encryption flag is set but not implemented.
         WS1, //Low compression ratio or performance issue.
 
-        IC1  //Operation initiated.
+        IC1,  //Operation initiated.
+
+        ENN99 // Not implemented
     };
 
 }

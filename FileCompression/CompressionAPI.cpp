@@ -2,54 +2,45 @@
 
 #include "CompressionAPI.h"
 #include "../errorhandler/ErrorHandler.h"
-#include <iostream>
+#include <string>
 
 namespace CompressionAPI {
 
     CompressionResult compressBlob(const std::string& jsonInput) {
         CompressionResult result;
 
-        if (jsonInput.empty()) {
-            result.errorCode = ErrorCodes::Compression::EU1; // invalid JSON.
-            ErrorHandler::logError("CompressionAPI", result.errorCode, "compressBlob: Empty JSON input provided.");
-            return result;
-        }
-
-        // In a full implementation:
-        // 1. Parse JSON input.
-        // 2. Validate file metadata (fileName, fileType, fileData, lastModified, creationDate).
-        // 3. Determine compression algorithm:
-        //    - Use specified algorithm if valid and compatible.
-        //    - Otherwise, default to LZMA.
-        // 4. If encryption is requested, warn (WU2) since it's not implemented.
-        // 5. Perform compression and calculate checksum.
-        // 6. Return the compressed data or an error if something fails.
-
-        // Here, we simulate a successful compression.
-        result.errorCode = ErrorCodes::Compression::SUCCESS;
-        result.compressedData = "DummyCompressedData";
+        // Future implementation:
+        // - Check if JSON input is empty -> if so, log error and return EU1.
+        // - Parse JSON and validate content.
+        // - If file type is unsupported, log error and return EU2.
+        // - If precompression parameters are missing/invalid, log warning and return WU1.
+        // - If metadata (lastModified, creationDate) is missing, log warning.
+        // - If encryption flag is set, log warning and return WU2.
+        // - Perform compression using the selected algorithm (default to LZMA if none specified).
+        // - Validate checksum and data integrity.
+        // - Return the compressed data.
+        //
+        // For now, we simulate that the function is not implemented.
+        ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ENN99, "compressBlob: Not implemented.");
+        result.errorCode = ErrorCodes::Compression::ENN99;
+        result.data = "";
         return result;
     }
 
     CompressionResult decompressBlob(const std::string& jsonInput) {
         CompressionResult result;
 
-        // Check for empty input.
-        if (jsonInput.empty()) {
-            result.errorCode = ErrorCodes::Compression::EU1; // User-side, invalid JSON.
-            ErrorHandler::logError("CompressionAPI", result.errorCode, "decompressBlob: Empty JSON input provided.");
-            return result;
-        }
-
-        // In a full implementation, perform steps similar to compression:
-        // 1. Parse JSON input for compressed data.
-        // 2. Validate checksums and seals.
-        // 3. Decompress data.
-        // 4. Return decompressed content or an error.
-
-        // For demonstration, simulate a successful decompression.
-        result.errorCode = ErrorCodes::Compression::SUCCESS;
-        result.compressedData = "DummyDecompressedData";
+        // Future implementation:
+        // - Check if JSON input is empty -> log error and return EU1.
+        // - Parse JSON to extract compressed data.
+        // - Validate checksum; if mismatched, log error and return ES2.
+        // - Decompress the data; if decompression fails, return ES3.
+        // - Validate data integrity; if corrupt, return ES4.
+        //
+        // For now, we simulate that the function is not implemented.
+        ErrorHandler::logError("CompressionAPI::decompressBlob", ErrorCodes::Compression::ENN99, "decompressBlob: Not implemented.");
+        result.errorCode = ErrorCodes::Compression::ENN99;
+        result.data = "";
         return result;
     }
 

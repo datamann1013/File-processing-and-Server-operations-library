@@ -70,6 +70,34 @@ build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression
 
+build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/LZMA/LZMACompressor.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMetods/LZMA/LZMACompressor.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\LZMA\LZMACompressor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\LZMA
+
+build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/ZIP/ZIPCompressor.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMetods/ZIP/ZIPCompressor.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\ZIP\ZIPCompressor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\ZIP
+
+build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/H264/H264Compressor.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMetods/H264/H264Compressor.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\H264\H264Compressor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\H264
+
+build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/JPEG/JPEGCompressor.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMetods/JPEG/JPEGCompressor.cpp || cmake_object_order_depends_target_C__APIRepo
+  DEFINES = -DC__APIRepo_EXPORTS
+  DEP_FILE = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\JPEG\JPEGCompressor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\C__APIRepo.dir
+  OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMetods\JPEG
+
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target C__APIRepo
@@ -78,7 +106,7 @@ build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj: CXX_COMP
 #############################################
 # Link the shared library libC__APIRepo.dll
 
-build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj CMakeFiles/C__APIRepo.dir/Errorhandler/ErrorHandler.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj
+build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRepo_Debug CMakeFiles/C__APIRepo.dir/library.cpp.obj CMakeFiles/C__APIRepo.dir/Errorhandler/ErrorHandler.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionAPI.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/LZMA/LZMACompressor.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/ZIP/ZIPCompressor.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/H264/H264Compressor.cpp.obj CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMetods/JPEG/JPEGCompressor.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
@@ -215,6 +243,13 @@ build Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj
   OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
 
+build Google_tests/CMakeFiles/Google_Tests_run.dir/CompressionMethodTests.cpp.obj: CXX_COMPILER__Google_Tests_run_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CompressionMethodTests.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\CompressionMethodTests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Google_Tests_run
@@ -223,7 +258,7 @@ build Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj
 #############################################
 # Link the executable Google_tests\Google_Tests_run.exe
 
-build Google_tests/Google_Tests_run.exe: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
+build Google_tests/Google_Tests_run.exe: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/CompressionMethodTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  -lFileCompression  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
