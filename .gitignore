@@ -10,4 +10,4 @@ build/
 CMakeCache.txt
 cmake_install.cmake
 cmake_pch.hxx
-cmake-build-debug
+cmake-build-debug/*
