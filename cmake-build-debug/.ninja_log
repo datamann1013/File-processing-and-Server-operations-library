@@ -2,7 +2,7 @@
 18	2367	7662425198288390	Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	93430b0f9e29de4f
 15	420	7662417983815791	Google_tests/CMakeFiles/Google_Tests_run.dir/dummyFileGenerator.cpp.obj	179d4b16913f9855
 60	1978	7661774880349828	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	d3b60e86c2e7e55a
-10	321	7662430906378799	build.ninja	d8961f6da3c45ed9
+2	307	7662439675281587	build.ninja	d8961f6da3c45ed9
 2367	2729	7662425221770080	lib/libgmock.a	254a22e662f3fe56
 52	14109	7661774880258389	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	78a5d73fc1edfeb3
 38	454	7662423615523217	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H264Compressor.cpp.obj	68fe4980b59f1704
@@ -12,6 +12,7 @@
 19595	19706	7661775075693621	lib/libgtest_main.a	26cf39996c7dd2b7
 8	47	7660825201458746	CMakeFiles/C__APIRepo.dir/Google_tests/FileCompression/testUnzip.cpp.obj	3a75b08fa1475e0e
 48	154	7660825202852649	libC__APIRepo.dll	17f1b1fded61cfe8
+29	119	7662430908327754	libFileCompression.dll	de61bf3a43bfc0f4
 48	154	7660825202852649	libC__APIRepo.dll.a	17f1b1fded61cfe8
 9	1360	7662417983750875	Google_tests/CMakeFiles/Google_Tests_run.dir/FileDeCompressionTest.cpp.obj	2424c8a797a7ffd3
 5	1447	7662417983710873	Google_tests/CMakeFiles/Google_Tests_run.dir/FileCompressionTest.cpp.obj	7dd8a312f39e5dcf
@@ -23,13 +24,16 @@
 44	2700	7662420863416669	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj	fafb36d689c14c46
 30	385	7662425060296023	CMakeFiles/ErrorHandler.dir/library.cpp.obj	234eaeca99b9027f
 33	404	7662425060326023	CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj	89071da03c087a9e
+29	119	7662430908327754	libFileCompression.dll.a	de61bf3a43bfc0f4
 32	424	7662423615472937	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp.obj	a8ea034e334cbf9e
 40	425	7662423615555746	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp.obj	d026874a37b74b4d
 27	447	7662423615410494	CMakeFiles/FileCompression.dir/library.cpp.obj	b2287d142208edfc
 30	455	7662423615450523	CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj	4ca1f7e9e82b841a
 21	107	7662425309354057	libErrorHandler.dll	ee4016680413b88f
 21	107	7662425309354057	libErrorHandler.dll.a	ee4016680413b88f
-2	307	7662430906378799	build.ninja	d8961f6da3c45ed9
-29	119	7662430908327754	libFileCompression.dll	de61bf3a43bfc0f4
-29	119	7662430908327754	libFileCompression.dll.a	de61bf3a43bfc0f4
 119	3993	7662430908412282	Google_tests/CompressionDecompressionTests.exe	38fdc1b360e20b7d
+16	86	7662443069490746	bin/libErrorHandler.dll	665b0212ce40cfb1
+16	86	7662443069490746	libErrorHandler.dll.a	665b0212ce40cfb1
+86	173	7662443070351018	bin/libFileCompression.dll	14b7b0acae079460
+86	173	7662443070351018	libFileCompression.dll.a	14b7b0acae079460
+173	4131	7662443070436173	bin/CompressionDecompressionTests.exe	ea0117586bdb4e75

@@ -104,16 +104,16 @@ build CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj: CXX_COMPILE
 
 
 #############################################
-# Link the shared library libErrorHandler.dll
+# Link the shared library bin\libErrorHandler.dll
 
-build libErrorHandler.dll libErrorHandler.dll.a: CXX_SHARED_LIBRARY_LINKER__ErrorHandler_Debug CMakeFiles/ErrorHandler.dir/library.cpp.obj CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj
+build bin/libErrorHandler.dll libErrorHandler.dll.a: CXX_SHARED_LIBRARY_LINKER__ErrorHandler_Debug CMakeFiles/ErrorHandler.dir/library.cpp.obj CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ErrorHandler.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_FILE = libErrorHandler.dll
+  TARGET_FILE = bin\libErrorHandler.dll
   TARGET_IMPLIB = libErrorHandler.dll.a
   TARGET_PDB = ErrorHandler.dll.dbg
 
@@ -174,16 +174,16 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPE
 
 
 #############################################
-# Link the shared library libFileCompression.dll
+# Link the shared library bin\libFileCompression.dll
 
-build libFileCompression.dll libFileCompression.dll.a: CXX_SHARED_LIBRARY_LINKER__FileCompression_Debug CMakeFiles/FileCompression.dir/library.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/ZIP/ZIPCompressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H264Compressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp.obj | libErrorHandler.dll.a || libErrorHandler.dll
+build bin/libFileCompression.dll libFileCompression.dll.a: CXX_SHARED_LIBRARY_LINKER__FileCompression_Debug CMakeFiles/FileCompression.dir/library.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/ZIP/ZIPCompressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H264Compressor.cpp.obj CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp.obj | libErrorHandler.dll.a || bin/libErrorHandler.dll
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = libErrorHandler.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_FILE = libFileCompression.dll
+  TARGET_FILE = bin\libFileCompression.dll
   TARGET_IMPLIB = libFileCompression.dll.a
   TARGET_PDB = FileCompression.dll.dbg
 
@@ -333,15 +333,15 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/dummyFileGenerat
 
 
 #############################################
-# Link the executable Google_tests\CompressionDecompressionTests.exe
+# Link the executable bin\CompressionDecompressionTests.exe
 
-build Google_tests/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/dummyFileGenerator.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || libErrorHandler.dll libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
+build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/dummyFileGenerator.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libFileCompression.dll.a  libErrorHandler.dll.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = Google_tests\CompressionDecompressionTests.exe
+  TARGET_FILE = bin\CompressionDecompressionTests.exe
   TARGET_IMPLIB = Google_tests\libCompressionDecompressionTests.dll.a
   TARGET_PDB = CompressionDecompressionTests.exe.dbg
 
@@ -753,13 +753,13 @@ build Google_tests/lib/googletest/install/strip: phony Google_tests/lib/googlete
 
 build C__APIRepo: phony libC__APIRepo.dll
 
-build CompressionDecompressionTests: phony Google_tests/CompressionDecompressionTests.exe
+build CompressionDecompressionTests: phony bin/CompressionDecompressionTests.exe
 
-build CompressionDecompressionTests.exe: phony Google_tests/CompressionDecompressionTests.exe
+build CompressionDecompressionTests.exe: phony bin/CompressionDecompressionTests.exe
 
-build ErrorHandler: phony libErrorHandler.dll
+build ErrorHandler: phony bin/libErrorHandler.dll
 
-build FileCompression: phony libFileCompression.dll
+build FileCompression: phony bin/libFileCompression.dll
 
 build example: phony example.exe
 
@@ -770,6 +770,10 @@ build gmock_main: phony lib/libgmock_main.a
 build gtest: phony lib/libgtest.a
 
 build gtest_main: phony lib/libgtest_main.a
+
+build libErrorHandler.dll: phony bin/libErrorHandler.dll
+
+build libFileCompression.dll: phony bin/libFileCompression.dll
 
 build libgmock.a: phony lib/libgmock.a
 
@@ -787,14 +791,14 @@ build libgtest_main.a: phony lib/libgtest_main.a
 #############################################
 # Folder: C:/Users/data0/CLionProjects/C++APIRepo/cmake-build-debug
 
-build all: phony libC__APIRepo.dll libErrorHandler.dll libFileCompression.dll example.exe Google_tests/all
+build all: phony libC__APIRepo.dll bin/libErrorHandler.dll bin/libFileCompression.dll example.exe Google_tests/all
 
 # =============================================================================
 
 #############################################
 # Folder: C:/Users/data0/CLionProjects/C++APIRepo/cmake-build-debug/Google_tests
 
-build Google_tests/all: phony Google_tests/CompressionDecompressionTests.exe Google_tests/lib/all
+build Google_tests/all: phony bin/CompressionDecompressionTests.exe Google_tests/lib/all
 
 # =============================================================================
 

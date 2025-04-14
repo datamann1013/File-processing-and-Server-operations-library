@@ -34,3 +34,15 @@ target_link_libraries(example PRIVATE cpprepoAPI)
 target_link_libraries(FileCompression PRIVATE ErrorHandler)
 
 add_subdirectory(Google_tests)
+
+
+set_target_properties(ErrorHandler PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
+set_target_properties(FileCompression PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
+set_target_properties(CompressionDecompressionTests PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
+
