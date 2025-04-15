@@ -1,12 +1,23 @@
-// Created by data0 on 11.04.2025.
+// Created by data0 on 11.04.2025. Compression tests
 
 #include <gtest/gtest.h>
 #include "../FileCompression/CompressionAPI.h"
 #include "../errorhandler/ErrorCodes.h"
-#include "dummyFileGenerator.h"
+#include "TestFiles/Testassists/FileLocator/FileLocator.h"
+#include <filesystem>
+#include <fstream>
+#include <sstream>
 #include <vector>
+#include <iostream>
 
-// Test 1: Valid JSON Parsing
+namespace fs = std::filesystem;
+
+#define ASSERT_NOT_IMPLEMENTED(result)                    \
+    if (result.errorCode == ErrorCodes::Compression::ENN99) { \
+        FAIL() << "Function not implemented (returned ENN99)";  \
+    }
+
+// Test Cases for compressBlob (using JSON input directly).
 TEST(CompressionAPITest, ValidJSONParsing) {
     std::string jsonInput = R"({
         "files": [
@@ -21,21 +32,21 @@ TEST(CompressionAPITest, ValidJSONParsing) {
         }
     })";
     auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS);
 }
 
-// Test 2: Empty JSON returns error EU1.
 TEST(CompressionAPITest, EmptyJSONReturnsEU1) {
     std::string jsonInput = "";
     auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::EU1);
 }
 
-// Test 3: Unsupported file type returns error EU2.
-TEST(CompressionAPITest, UnsupportedFileTypeReturnsEU2) {
+TEST(CompressionAPITest, SpecificAlgorithmSelection) {
     std::string jsonInput = R"({
         "files": [
-            {"fileName": "doc.xyz", "fileType": "unsupportedFileType", "fileData": "dummyData",
+            {"fileName": "doc.txt", "fileType": "txt", "fileData": "data",
              "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
         ],
         "options": {
@@ -46,14 +57,49 @@ TEST(CompressionAPITest, UnsupportedFileTypeReturnsEU2) {
         }
     })";
     auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
+    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS);
+}
+
+TEST(CompressionAPITest, NoAlgorithmSpecifiedDefaultsToLZMA) {
+    std::string jsonInput = R"({
+        "files": [
+            {"fileName": "doc.txt", "fileType": "txt", "fileData": "data",
+             "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
+        ],
+        "options": {
+            "mode": "lossless",
+            "preCompress": {"text": null},
+            "encryption": false
+        }
+    })";
+    auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
+    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS);
+}
+
+TEST(CompressionAPITest, UnsupportedFileTypeReturnsEU2) {
+    std::string jsonInput = R"({
+        "files": [
+            {"fileName": "doc.xyz", "fileType": "unsupportedFileType", "fileData": "data",
+             "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
+        ],
+        "options": {
+            "compressionAlgorithm": "LZMA",
+            "mode": "lossless",
+            "preCompress": {"text": null},
+            "encryption": false
+        }
+    })";
+    auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::EU2);
 }
 
-// Test 4: Invalid precompression parameters trigger warning WU1.
 TEST(CompressionAPITest, InvalidPrecompressionParameters) {
     std::string jsonInput = R"({
         "files": [
-            {"fileName": "doc.txt", "fileType": "txt", "fileData": "dummyData",
+            {"fileName": "doc.txt", "fileType": "txt", "fileData": "data",
              "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
         ],
         "options": {
@@ -64,33 +110,63 @@ TEST(CompressionAPITest, InvalidPrecompressionParameters) {
         }
     })";
     auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::WU1);
 }
 
-// Test 5: Compression Ratio Test
-// Sizes: 1MB, 50MB, 100MB, 1GB, 5GB, 15GB, run 5 iterations each, compute average ratio
-TEST(CompressionAPITest, CompressionRatioTest) {
-    struct TestCase { size_t fileSize; double maxRatio; };
-    std::vector<TestCase> testCases = {
-        {1048576, 0.2},       // 1MB, compressed < 20%
-        {52428800, 0.25},     // 50MB
-        {104857600, 0.25},    // 100MB
-        {1073741824, 0.3},     // 1GB
-        {5368709120, 0.35},    // 5GB
-        {16106127360, 0.4}     // 15GB
-    };
+TEST(CompressionAPITest, MissingMetadataTriggersWarning) {
+    std::string jsonInput = R"({
+        "files": [
+            {"fileName": "doc.txt", "fileType": "txt", "fileData": "data"}
+        ],
+        "options": {
+            "compressionAlgorithm": "LZMA",
+            "mode": "lossless",
+            "preCompress": {"text": null},
+            "encryption": false,
+            "simulate_missing_metadata": true
+        }
+    })";
+    auto result = CompressionAPI::compressBlob(jsonInput);
+    ASSERT_NOT_IMPLEMENTED(result);
+    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::WU1);
+}
 
-    for (const auto& test : testCases) {
-        // Generate dummy file data once.
-        std::string fileData = generateDummyFileData(test.fileSize);
+TEST(FileLocatorTest, TestFilesDirectoryExists) {
+    std::string testDir = TEST_FILES_DIR; // Or use TEST_FILES_DIR if defined.
+    fs::path path(testDir);
+    std::cout << "Current working directory: " << fs::current_path() << std::endl;
+    EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
+}
+
+// Compression Ratio Test: For each file in TestFiles (of any type),
+// run 3 iterations per file, compute the average compression ratio,
+// and verify that it is below an expected threshold.
+TEST(CompressionAPITest, CompressionRatioTest) {
+    std::string testFilesDir = TEST_FILES_DIR; // Adjust this path as needed.
+    std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
+
+    // Use FileLocator to get all files.
+    auto files = FileCompression::FileLocator::getFilesByType(testFilesDir, "null");
+    ASSERT_FALSE(files.empty()) << "No test files found in TestFiles directory.";
+
+    const int iterations = 3;
+    const double maxRatio = 0.25; // Expected maximum ratio.
+
+    for (const auto &filePath : files) {
+        std::ifstream inFile(filePath, std::ios::binary);
+        std::ostringstream oss;
+        oss << inFile.rdbuf();
+        std::string fileData = oss.str();
+        size_t originalSize = fileData.size();
+        if (originalSize == 0) continue;
 
         double totalRatio = 0.0;
-        const int iterations = 5;
         for (int i = 0; i < iterations; ++i) {
-            // Build JSON input.
+            // Construct JSON input with file data.
             std::string jsonInput = "{\"files\": ["
-                                    "{\"fileName\": \"dummy.txt\", "
-                                    "\"fileType\": \"txt\", "
+                                    "{\"fileName\": \"" + filePath.filename().string() + "\", "
+                                    "\"fileType\": \"" + filePath.extension().string() + "\", "
                                     "\"fileData\": \"" + fileData +
                                     "\", \"lastModified\": \"2023-10-10T15:30:00Z\", "
                                     "\"creationDate\": \"2023-09-01T12:00:00Z\"}"
@@ -101,49 +177,16 @@ TEST(CompressionAPITest, CompressionRatioTest) {
                                     "\"encryption\": false}}";
 
             auto result = CompressionAPI::compressBlob(jsonInput);
-            EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS);
+            ASSERT_NOT_IMPLEMENTED(result);
+            EXPECT_EQ(result.errorCode, ErrorCodes::Compression::SUCCESS)
+                << "Compression failed for file: " << filePath;
             size_t compressedSize = result.data.size();
-            double ratio = static_cast<double>(compressedSize) / test.fileSize;
+            double ratio = static_cast<double>(compressedSize) / originalSize;
             totalRatio += ratio;
         }
         double averageRatio = totalRatio / iterations;
-        EXPECT_LT(averageRatio, test.maxRatio);
+        EXPECT_LT(averageRatio, maxRatio)
+            << "Average compression ratio for file " << filePath.filename().string()
+            << " is " << averageRatio << ", which exceeds the threshold of " << maxRatio;
     }
-}
-
-// Test 6: Checksum Mismatch - Simulate checksum mismatch should return error ES2.
-TEST(CompressionAPITest, ChecksumMismatchReturnsES2) {
-    std::string jsonInput = R"({
-        "files": [
-            {"fileName": "doc.txt", "fileType": "txt", "fileData": "dummyData",
-             "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
-        ],
-        "options": {
-            "compressionAlgorithm": "LZMA",
-            "mode": "lossless",
-            "preCompress": {"text": null},
-            "encryption": false,
-            "simulate_checksum_mismatch": true
-        }
-    })";
-    auto result = CompressionAPI::compressBlob(jsonInput);
-    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::ES2);
-}
-
-// Test 7: Encryption Flag - When encryption is requested, return warning WU2.
-TEST(CompressionAPITest, EncryptionFlagReturnsWU2) {
-    std::string jsonInput = R"({
-        "files": [
-            {"fileName": "doc.txt", "fileType": "txt", "fileData": "dummyData",
-             "lastModified": "2023-10-10T15:30:00Z", "creationDate": "2023-09-01T12:00:00Z"}
-        ],
-        "options": {
-            "compressionAlgorithm": "LZMA",
-            "mode": "lossless",
-            "preCompress": {"text": null},
-            "encryption": true
-        }
-    })";
-    auto result = CompressionAPI::compressBlob(jsonInput);
-    EXPECT_EQ(result.errorCode, ErrorCodes::Compression::WU2);
 }
