@@ -11,3 +11,4 @@ CMakeCache.txt
 cmake_install.cmake
 cmake_pch.hxx
 cmake-build-debug/*
+/Google_tests/video/*
