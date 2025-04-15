@@ -38,6 +38,7 @@ target_link_libraries(example PRIVATE cpprepoAPI)
 target_link_libraries(FileCompression PRIVATE ErrorHandler)
 
 add_definitions(-DTEST_FILES_DIR="${CMAKE_SOURCE_DIR}/Google_tests/TestFiles")
+add_definitions(-DTEST_FILE_SINGULAR="${CMAKE_SOURCE_DIR}/Google_tests/TestFiles/artificl/random.txt")
 
 add_subdirectory(Google_tests)
 
