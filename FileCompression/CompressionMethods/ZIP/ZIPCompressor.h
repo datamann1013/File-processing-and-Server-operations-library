@@ -6,8 +6,6 @@
 #include "../../ICompressor.h"
 
 // ZIP Compressor
-// ZIP is a widely used file archiving format, sometimes subject to patent considerations in certain regions.
-// This skeleton serves as the interface for ZIP compression.
 class ZIPCompressor : public ICompressor {
 public:
     // Compresses inputData using the ZIP algorithm.
