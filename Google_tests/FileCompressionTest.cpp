@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include "../FileCompression/CompressionAPI.h"
 #include "../errorhandler/ErrorCodes.h"
-#include "TestFiles/Testassists/FileLocator/FileLocator.h"
+#include "Testassists/FileLocator/FileLocator.h"
 #include <filesystem>
 #include <fstream>
 #include <sstream>

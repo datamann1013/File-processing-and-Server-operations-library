@@ -9,10 +9,10 @@ add_executable(CompressionDecompressionTests
         FileCompressionTest.cpp
         FileDeCompressionTest.cpp
         CompressionMethodTests.cpp
-        TestFiles/Testassists/DummyfileGenerator/dummyFileGenerator.cpp
-        TestFiles/Testassists/DummyfileGenerator/dummyFileGenerator.h
-        TestFiles/Testassists/FileLocator/FileLocator.cpp
-        TestFiles/Testassists/FileLocator/FileLocator.h
+        Testassists/DummyfileGenerator/dummyFileGenerator.cpp
+        Testassists/DummyfileGenerator/dummyFileGenerator.h
+        Testassists/FileLocator/FileLocator.cpp
+        Testassists/FileLocator/FileLocator.h
 )
 
 target_link_libraries(CompressionDecompressionTests gtest gtest_main)
