@@ -6,7 +6,11 @@ set(CMAKE_CXX_STANDARD 20)
 # Build main library
 add_library(C__APIRepo SHARED library.cpp
         errorhandler/ErrorCodes.h
-       )
+        FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.cpp
+        FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.h
+        FileCompression/CompressionMethods/AssistAlgorithms/Huffman/Huffman.cpp
+        FileCompression/CompressionMethods/AssistAlgorithms/Huffman/Huffman.h
+)
 
 add_library(ErrorHandler SHARED library.cpp
         errorhandler/ErrorCodes.h
@@ -33,7 +37,11 @@ add_executable(example library.cpp)
 target_link_libraries(example PRIVATE cpprepoAPI)
 target_link_libraries(FileCompression PRIVATE ErrorHandler)
 
+add_definitions(-DTEST_FILES_DIR="${CMAKE_SOURCE_DIR}/Google_tests/TestFiles")
+
 add_subdirectory(Google_tests)
+
+
 
 
 set_target_properties(ErrorHandler PROPERTIES

@@ -13,6 +13,7 @@ add_executable(CompressionDecompressionTests
         Testassists/DummyfileGenerator/dummyFileGenerator.h
         Testassists/FileLocator/FileLocator.cpp
         Testassists/FileLocator/FileLocator.h
+        AssistAlgorithmTests.cpp
 )
 
 target_link_libraries(CompressionDecompressionTests gtest gtest_main)
