@@ -70,3 +70,6 @@
 2136	8766	7665106247592319	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
 44	2211	7665107054509564	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj	b9a5975af93a8e60
 2212	8972	7665107076181441	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
+25	2324	7665111697683777	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+14	2584	7665111697564980	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj	8a98833ecc487a74
+2585	9796	7665111723263250	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2

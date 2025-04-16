@@ -3,11 +3,20 @@
 #include <gtest/gtest.h>
 #include <fstream>
 #include <sstream>
+#include <filesystem>
 #include "../FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.h"
 
-#define ASSERT_NOT_IMPLEMENTED(result)                         \
-if (result.errorCode == ErrorCodes::Compression::ENN99) {      \
-FAIL() << "Function not implemented (returned ENN99)";         \
+namespace fs = std::filesystem;
+
+#define ASSERT_NOT_IMPLEMENTED(result)                             \
+    if (result.errorCode == ErrorCodes::Compression::ENN99) {      \
+    FAIL() << "Function not implemented (returned ENN99)";         \
+}
+
+TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
+    fs::path path(TEST_FILES_DIR);
+    std::cout << "Current working directory: " << fs::current_path() << std::endl;
+    EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
 }
 
 TEST(AssistAlgorithmTests, LZ77CompressTest) {

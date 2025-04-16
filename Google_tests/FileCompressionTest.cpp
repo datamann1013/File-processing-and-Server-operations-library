@@ -10,14 +10,11 @@
 #include <vector>
 #include <iostream>
 
-namespace fs = std::filesystem;
-
 #define ASSERT_NOT_IMPLEMENTED(result)                    \
     if (result.errorCode == ErrorCodes::Compression::ENN99) { \
         FAIL() << "Function not implemented (returned ENN99)";  \
     }
 
-// Test Cases for compressBlob (using JSON input directly).
 TEST(CompressionAPITest, ValidJSONParsing) {
     std::string jsonInput = R"({
         "files": [
@@ -132,20 +129,11 @@ TEST(CompressionAPITest, MissingMetadataTriggersWarning) {
     EXPECT_EQ(result.errorCode, ErrorCodes::Compression::WU1);
 }
 
-TEST(FileLocatorTest, TestFilesDirectoryExists) {
-    fs::path path(TEST_FILES_DIR);
-    std::cout << "Current working directory: " << fs::current_path() << std::endl;
-    EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
-}
-
-// Compression Ratio Test: For each file in TestFiles (of any type),
-// run 3 iterations per file, compute the average compression ratio,
-// and verify that it is below an expected threshold.
+// For each file in TestFiles run 3 iterations per file and verify that average is below an expected threshold.
 TEST(CompressionAPITest, CompressionRatioTest) {
-    std::string testFilesDir = TEST_FILES_DIR; // Adjust this path as needed.
+    std::string testFilesDir = TEST_FILES_DIR;
     std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
-    // Use FileLocator to get all files.
     auto files = FileCompression::FileLocator::getFilesByType(testFilesDir, "null");
     ASSERT_FALSE(files.empty()) << "No test files found in TestFiles directory.";
 
