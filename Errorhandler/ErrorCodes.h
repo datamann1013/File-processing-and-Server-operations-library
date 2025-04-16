@@ -39,9 +39,14 @@ namespace ErrorCodes {
 
         WU1,  // Missing or invalid precompression parameters.
         WU2,  // Encryption flag is set but not implemented.
+
         WS1,  // Low compression ratio or performance issue.
 
-        IC1,  //Operation initiated.
+        IC1,  // Operation initiated
+        IC2,  // SerializeTokens start
+        IC3,  // SerializeTokens complete
+        IC4,  // DeserializeTokens start
+        IC5,  // DeserializeTokens complete
 
         ENN99 // Not implemented
     };
