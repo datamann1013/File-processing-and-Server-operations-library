@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <cstring>
+
 
 namespace CompressionAPI {
 
@@ -14,7 +16,21 @@ namespace CompressionAPI {
 
 
 
-    // Helper function (not yet implemented) to serialize tokens into a compressed string.
+    // Append value in binary to output string
+    template<typename T>
+    void appendValue(std::string &output, const T &value) {
+        output.append(reinterpret_cast<const char*>(&value), sizeof(T));
+    }
+
+    // Read a value from the data
+    template<typename T>
+    T readValue(const char* data, size_t& pos) {
+        T value;
+        std::memcpy(&value, data + pos, sizeof(T));
+        pos += sizeof(T);
+        return value;
+    }
+
     // TODO: Implement this function to convert your token list into the output format.
     std::string serializeTokens(const std::vector<Token>& tokens) {
         // As an example, you may choose to simply append the token values into a string.
@@ -28,7 +44,12 @@ namespace CompressionAPI {
         return output;
     }
 
-    std::vector<Token> deserializeTokens(const std::string& data, bool includeFileId) { return 0; }
+    std::vector<Token> deserializeTokens(const std::string& data, bool includeFileId) {
+
+        std::vector<Token> tokens;
+
+        return tokens;
+    }
 
 
     CompressionResult compressBlob(const std::string& inputData) {
