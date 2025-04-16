@@ -76,3 +76,16 @@
 37	2159	7665113776117409	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj	9d44ba8336870b7b
 31	2803	7665113776057405	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj	8a98833ecc487a74
 2803	9904	7665113803781308	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
+74	708	7665304287830971	CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj	f0872dddcbeb35d1
+85	710	7665304287942013	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H264Compressor.cpp.obj	49912e4eb54eaaf3
+78	711	7665304287868196	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp.obj	86543cb88541f288
+89	712	7665304287978361	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp.obj	c5c5b289665320b3
+81	712	7665304287901786	CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/ZIP/ZIPCompressor.cpp.obj	f3f555a42ce1659d
+68	753	7665304287781002	CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj	4bea7bf91918ec3a
+753	1068	7665304297648172	bin/libErrorHandler.dll	665b0212ce40cfb1
+753	1068	7665304297648172	libErrorHandler.dll.a	665b0212ce40cfb1
+1068	1195	7665304298931675	bin/libFileCompression.dll	14b7b0acae079460
+1068	1195	7665304298931675	libFileCompression.dll.a	14b7b0acae079460
+102	1806	7665304288115342	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj	9d44ba8336870b7b
+107	1906	7665304288160369	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj	b9a5975af93a8e60
+94	2204	7665304288031014	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj	8a98833ecc487a74

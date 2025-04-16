@@ -43,6 +43,7 @@ namespace CompressionAPI {
 
         //TODO: Add first two numbers for filename and offset
 
+
         // Write header: number of tokens (32-bit unsigned).
         uint32_t tokenCount = static_cast<uint32_t>(tokens.size());
         appendValue(output, tokenCount);
@@ -87,9 +88,29 @@ namespace CompressionAPI {
         std::vector<Token> tokens;
         size_t pos = 0;
 
-        //TODO: Read first two numbers for filename and offset
-        bool includeFileId = false;
-        bool offset32 = false;
+        const std::string delimiter = "::";
+        size_t firstDelim = data.find(delimiter, pos);
+        if (firstDelim == std::string::npos) {
+            throw std::runtime_error("Missing start parameter (file identifier flag) - ES9");
+        }
+        std::string fileIdFlagStr = data.substr(pos, firstDelim - pos);
+        pos = firstDelim + delimiter.size();
+
+        size_t secondDelim = data.find(delimiter, pos);
+        if (secondDelim == std::string::npos) {
+            throw ErrorCodes::Compression::ES15;
+        }
+        std::string offsetFlagStr = data.substr(pos, secondDelim - pos);
+        pos = secondDelim + delimiter.size();
+
+        // Validate flags.
+        if ((fileIdFlagStr != "0" && fileIdFlagStr != "1") ||
+            (offsetFlagStr != "0" && offsetFlagStr != "1")) {
+            throw ErrorCodes::Compression::ES16;
+            }
+        bool includeFileId = (fileIdFlagStr == "1");
+        bool offset32 = (offsetFlagStr == "0");
+
 
         if (data.size() < sizeof(uint32_t)) {
             throw ErrorCodes::Compression::ES5;

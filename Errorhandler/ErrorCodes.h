@@ -30,6 +30,8 @@ namespace ErrorCodes {
         ES12, // Data too short for token type (LZ77)
         ES13, // Data too short for literal length (LZ77)
         ES14, // Data too short for file identifier length (LZ77)
+        ES15,  // Missing start header parameters.
+        ES16, // Invalid start header format.
 
         EU1,  // Invalid JSON input.
         EU2,  // Unsupported file type.

@@ -20,6 +20,75 @@ TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
     EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
 }
 
+TEST(AssistAlgorithmTests, WithFileIdentifierAnd32BitOffset_LZ77) {
+    // Create sample token.
+    CompressionAPI::Token token;
+    token.offset = 100;
+    token.length = 50;
+    token.literal = "Hello, World!";
+    token.fileIdentifier = "Sample.txt";
+    token.checksum = 0xDEADBEEF;
+    token.type = CompressionAPI::Token::TokenType::MATCH;
+
+    std::vector<CompressionAPI::Token> tokens = { token };
+
+    // Serialize tokens (include file identifier, use 32-bit offset).
+    std::string serialized = serializeTokens(tokens);
+
+    // Deserialize tokens.
+    std::vector<CompressionAPI::Token> deserialized = CompressionAPI::deserializeTokens(serialized);
+    ASSERT_EQ(deserialized.size(), tokens.size());
+    const CompressionAPI::Token &t = deserialized[0];
+    EXPECT_EQ(t.offset, token.offset);
+    EXPECT_EQ(t.length, token.length);
+    EXPECT_EQ(t.literal, token.literal);
+    EXPECT_EQ(t.fileIdentifier, token.fileIdentifier);
+    EXPECT_EQ(t.checksum, token.checksum);
+    EXPECT_EQ(t.type, token.type);
+}
+
+TEST(AssistAlgorithmTests, WithoutFileIdentifierAnd64BitOffset_LZ77) {
+    // For the purpose of testing, we simulate configuration by temporarily modifying the header.
+    // Assume we have another function overload or macro that sets includeFileId = false and offset64 = true.
+    // For simplicity, here we create a token and then manually serialize with a modified header.
+    bool includeFileId = false;
+    bool offset64 = true;
+
+    // Build custom header.
+    std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset64 ? 1 : 0) + "::";
+
+    CompressionAPI::Token token;
+    token.offset = 1234567890123ull;
+    token.length = 75;
+    token.literal = "DataExample";
+    token.fileIdentifier = ""; // Not used.
+    token.checksum = 0xCAFEBABE;
+    token.type = CompressionAPI::Token::TokenType::LITERAL;
+
+    std::vector<CompressionAPI::Token> tokens = { token };
+
+    // Serialize tokens using serializeTokens (which uses a fixed header configuration in this implementation).
+    // Here, for testing, we can simulate by concatenating our header with the remainder from serializeTokens,
+    // or by temporarily modifying serializeTokens to accept the header parameters.
+    // For demonstration, we'll do the following:
+    std::string tokenData = serializeTokens(tokens);
+    // Replace the header with our custom header.
+    size_t headerEnd = tokenData.find("::", 0);
+    headerEnd = tokenData.find("::", headerEnd + 2);
+    headerEnd += 2; // Position after the second ::
+    std::string customSerialized = header + tokenData.substr(headerEnd);
+
+    std::vector<CompressionAPI::Token> deserialized = CompressionAPI::deserializeTokens(customSerialized);
+    ASSERT_EQ(deserialized.size(), tokens.size());
+    const CompressionAPI::Token &t = deserialized[0];
+    EXPECT_EQ(t.offset, token.offset);
+    EXPECT_EQ(t.length, token.length);
+    EXPECT_EQ(t.literal, token.literal);
+    EXPECT_EQ(t.checksum, token.checksum);
+    EXPECT_EQ(t.type, token.type);
+}
+
+
 TEST(AssistAlgorithmTests, AppendAndReadInteger_LZ77) {
     std::string output;
     int32_t testVal = 123456;
@@ -44,62 +113,6 @@ TEST(AssistAlgorithmTests, AppendAndReadUint8_LZ77) {
     EXPECT_EQ(pos, sizeof(testVal));
 }
 
-TEST(AssistAlgorithmTests, SerializeDeserializeWithoutFileIdentifier_LZ77) {
-    // Create a sample token.
-    CompressionAPI::Token token;
-    token.offset = 100;
-    token.length = 25;
-    token.literal = "Hello,World!";
-    // Leave fileIdentifier empty.
-    token.checksum = 0xDEADBEEF;
-    token.type = static_cast<uint8_t>(CompressionAPI::Token::TokenType::MATCH); // Use token.type, not token.TokenType.
-
-    std::vector<CompressionAPI::Token> tokens = {token};
-
-    // Serialize tokens with includeFileId = false.
-    std::string serialized = serializeTokens(tokens, false);
-
-    // Deserialize.
-    std::vector<CompressionAPI::Token> tokensDeser = CompressionAPI::deserializeTokens(serialized, false);
-    ASSERT_EQ(tokensDeser.size(), 1u);
-    const CompressionAPI::Token &t = tokensDeser[0];
-    EXPECT_EQ(t.offset, token.offset);
-    EXPECT_EQ(t.length, token.length);
-    EXPECT_EQ(t.literal, token.literal);
-    EXPECT_EQ(t.checksum, token.checksum);
-    EXPECT_EQ(t.type, token.type);
-    // fileIdentifier should be empty.
-    EXPECT_TRUE(t.fileIdentifier.empty());
-}
-
-TEST(AssistAlgorithmTests, SerializeDeserializeWithFileIdentifier_LZ77) {
-    // Create a sample token with a file identifier.
-    CompressionAPI::Token token;
-    token.offset = 2048;
-    token.length = 100;
-    token.literal = "SampleLiteralData";
-    token.fileIdentifier = "TestFile.txt";
-    token.checksum = 0xCAFEBABE;
-    token.type = static_cast<uint8_t>(CompressionAPI::Token::TokenType::LITERAL);
-
-    std::vector<CompressionAPI::Token> tokens = {token};
-
-    // Serialize tokens with includeFileId = true.
-    std::string serialized = serializeTokens(tokens, true);
-
-    // Deserialize.
-    std::vector<CompressionAPI::Token> tokensDeser = CompressionAPI::deserializeTokens(serialized, true);
-    ASSERT_EQ(tokensDeser.size(), 1u);
-    const CompressionAPI::Token &t = tokensDeser[0];
-    EXPECT_EQ(t.offset, token.offset);
-    EXPECT_EQ(t.length, token.length);
-    EXPECT_EQ(t.literal, token.literal);
-    EXPECT_EQ(t.fileIdentifier, token.fileIdentifier);
-    EXPECT_EQ(t.checksum, token.checksum);
-    EXPECT_EQ(t.type, token.type);
-}
-
-// --- Test error conditions for deserialization (truncated data).
 
 TEST(AssistAlgorithmTests, DeserializeTruncatedDataThrows_LZ77) {
     // Create a valid token, serialize it, then truncate the output.
