@@ -15,6 +15,9 @@ namespace CompressionAPI {
     // TODO: Keep a copy of the data unaltered till success
 
 
+    // TODO: Package level checksum
+
+
 
     // Append value in binary to output string
     template<typename T> void appendValue(std::string &output, const T &value) {
@@ -22,29 +25,43 @@ namespace CompressionAPI {
     }
 
     // Read a value from the data
-    template<typename T> T readValue(const char* data, size_t& pos) {
+    template <typename T> T readValue(const char* data, size_t &pos) {
+        if (pos + sizeof(T) > std::strlen(data)) {
+            throw ErrorCodes::Compression::ES9;
+        }
         T value;
         std::memcpy(&value, data + pos, sizeof(T));
         pos += sizeof(T);
         return value;
     }
 
+
     // TODO: Implement this function to convert your token list into the output format.
-    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId) {
+    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool offset32) {
 
         std::string output;
+
+        //TODO: Add first two numbers for filename and offset
+
         // Write header: number of tokens (32-bit unsigned).
         uint32_t tokenCount = static_cast<uint32_t>(tokens.size());
         appendValue(output, tokenCount);
 
         for (const auto &token : tokens) {
 
-            uint32_t offsetVal = token.offset;
+            if (offset32) {
+                uint32_t offsetVal = token.offset;
+                appendValue(output, offsetVal);
+            }
+            else {
+                uint64_t offsetVal = token.offset;
+                appendValue(output, offsetVal);
+            }
+
             uint32_t lengthVal = token.length;
-            appendValue(output, offsetVal);
             appendValue(output, lengthVal);
 
-            uint8_t tType = token.TokenType;
+            uint8_t tType = static_cast<uint8_t>(token.type);
             appendValue(output, tType);
 
             // First its length, then the literal data itself.
@@ -52,7 +69,7 @@ namespace CompressionAPI {
             appendValue(output, literalLen);
             output.append(token.literal);
 
-            // Write file identifier if requested.
+            // Write file identifier
             if (includeFileId) {
                 uint32_t fileIdLen = static_cast<uint32_t>(token.fileIdentifier.size());
                 appendValue(output, fileIdLen);
@@ -65,39 +82,78 @@ namespace CompressionAPI {
         return output;
     }
 
-    std::vector<Token> deserializeTokens(const std::string& data, bool includeFileId) {
+    std::vector<Token> deserializeTokens(const std::string& data) {
+
         std::vector<Token> tokens;
         size_t pos = 0;
+
+        //TODO: Read first two numbers for filename and offset
+        bool includeFileId = false;
+        bool offset32 = false;
+
         if (data.size() < sizeof(uint32_t)) {
             throw ErrorCodes::Compression::ES5;
         }
-        uint32_t tokenCount = readValue<uint32_t>(data.data(), pos);
+
+        uint32_t tokenCount = *reinterpret_cast<const uint32_t*>(data.data());
+        pos += sizeof(uint32_t);
 
         for (uint32_t i = 0; i < tokenCount; ++i) {
 
             Token token;
 
-            token.offset = readValue<uint32_t>(data.data(), pos);
-            token.length = readValue<uint32_t>(data.data(), pos);
-
-            token.TokenType = readValue<uint8_t>(data.data(), pos);
-
-            uint32_t literalLen = readValue<uint32_t>(data.data(), pos);
-            if (pos + literalLen > data.size()) {
-                throw ErrorCodes::Compression::ES6;
+            if (offset32) {
+                if (pos + sizeof(uint32_t) > data.size())
+                    throw ErrorCodes::Compression::ES10;
+                uint32_t offsetVal = *reinterpret_cast<const uint32_t*>(data.data() + pos);
+                pos += sizeof(uint32_t);
+                token.offset = offsetVal;
+            } else {
+                if (pos + sizeof(uint64_t) > data.size())
+                    throw ErrorCodes::Compression::ES10;;
+                uint64_t offsetVal = *reinterpret_cast<const uint64_t*>(data.data() + pos);
+                pos += sizeof(uint64_t);
+                token.offset = offsetVal;
             }
+
+            if (pos + sizeof(uint32_t) > data.size())
+                throw ErrorCodes::Compression::ES11;
+            token.length = *reinterpret_cast<const uint32_t*>(data.data() + pos);
+            pos += sizeof(uint32_t);
+
+            if (pos + sizeof(uint8_t) > data.size())
+                throw ErrorCodes::Compression::ES12;
+            uint8_t typeVal = *reinterpret_cast<const uint8_t*>(data.data() + pos);
+            pos += sizeof(uint8_t);
+            token.type = static_cast<Token::TokenType>(typeVal);
+
+            if (pos + sizeof(uint32_t) > data.size())
+                throw ErrorCodes::Compression::ES13;
+            uint32_t literalLen = *reinterpret_cast<const uint32_t*>(data.data() + pos);
+            pos += sizeof(uint32_t);
+            if (pos + literalLen > data.size())
+                throw ErrorCodes::Compression::ES6;
             token.literal = data.substr(pos, literalLen);
             pos += literalLen;
 
             // Read file identifier if included.
             if (includeFileId) {
-                uint32_t fileIdLen = readValue<uint32_t>(data.data(), pos);
-                if (pos + fileIdLen > data.size()) {
+                if (pos + sizeof(uint32_t) > data.size())
+                    throw ErrorCodes::Compression::ES14;
+                uint32_t fileIdLen = *reinterpret_cast<const uint32_t*>(data.data() + pos);
+                pos += sizeof(uint32_t);
+                if (pos + fileIdLen > data.size())
                     throw ErrorCodes::Compression::ES7;
-                }
                 token.fileIdentifier = data.substr(pos, fileIdLen);
                 pos += fileIdLen;
             }
+
+            if (pos + sizeof(uint32_t) > data.size())
+                throw std::runtime_error("Data too short for checksum.");
+            token.checksum = *reinterpret_cast<const uint32_t*>(data.data() + pos);
+            pos += sizeof(uint32_t);
+
+            tokens.push_back(token);
 
             // Read checksum.
             if (pos + sizeof(uint32_t) > data.size()) {
