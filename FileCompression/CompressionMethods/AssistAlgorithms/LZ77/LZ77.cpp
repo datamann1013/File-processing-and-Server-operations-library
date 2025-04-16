@@ -17,14 +17,12 @@ namespace CompressionAPI {
 
 
     // Append value in binary to output string
-    template<typename T>
-    void appendValue(std::string &output, const T &value) {
+    template<typename T> void appendValue(std::string &output, const T &value) {
         output.append(reinterpret_cast<const char*>(&value), sizeof(T));
     }
 
     // Read a value from the data
-    template<typename T>
-    T readValue(const char* data, size_t& pos) {
+    template<typename T> T readValue(const char* data, size_t& pos) {
         T value;
         std::memcpy(&value, data + pos, sizeof(T));
         pos += sizeof(T);
@@ -32,22 +30,83 @@ namespace CompressionAPI {
     }
 
     // TODO: Implement this function to convert your token list into the output format.
-    std::string serializeTokens(const std::vector<Token>& tokens) {
-        // As an example, you may choose to simply append the token values into a string.
-        // In practice, you'd encode these values in a binary or a more efficient format.
+    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId) {
+
         std::string output;
-        for (const auto& token : tokens) {
-            output += "{" + std::to_string(token.offset) + "," +
-                      std::to_string(token.length) + "," +
-                      token.nextSymbol + "}";
+        // Write header: number of tokens (32-bit unsigned).
+        uint32_t tokenCount = static_cast<uint32_t>(tokens.size());
+        appendValue(output, tokenCount);
+
+        for (const auto &token : tokens) {
+
+            uint32_t offsetVal = token.offset;
+            uint32_t lengthVal = token.length;
+            appendValue(output, offsetVal);
+            appendValue(output, lengthVal);
+
+            uint8_t tType = token.TokenType;
+            appendValue(output, tType);
+
+            // First its length, then the literal data itself.
+            uint32_t literalLen = static_cast<uint32_t>(token.literal.size());
+            appendValue(output, literalLen);
+            output.append(token.literal);
+
+            // Write file identifier if requested.
+            if (includeFileId) {
+                uint32_t fileIdLen = static_cast<uint32_t>(token.fileIdentifier.size());
+                appendValue(output, fileIdLen);
+                output.append(token.fileIdentifier);
+            }
+
+            uint32_t check = token.checksum;
+            appendValue(output, check);
         }
         return output;
     }
 
     std::vector<Token> deserializeTokens(const std::string& data, bool includeFileId) {
-
         std::vector<Token> tokens;
+        size_t pos = 0;
+        if (data.size() < sizeof(uint32_t)) {
+            throw ErrorCodes::Compression::ES5;
+        }
+        uint32_t tokenCount = readValue<uint32_t>(data.data(), pos);
 
+        for (uint32_t i = 0; i < tokenCount; ++i) {
+
+            Token token;
+
+            token.offset = readValue<uint32_t>(data.data(), pos);
+            token.length = readValue<uint32_t>(data.data(), pos);
+
+            token.TokenType = readValue<uint8_t>(data.data(), pos);
+
+            uint32_t literalLen = readValue<uint32_t>(data.data(), pos);
+            if (pos + literalLen > data.size()) {
+                throw ErrorCodes::Compression::ES6;
+            }
+            token.literal = data.substr(pos, literalLen);
+            pos += literalLen;
+
+            // Read file identifier if included.
+            if (includeFileId) {
+                uint32_t fileIdLen = readValue<uint32_t>(data.data(), pos);
+                if (pos + fileIdLen > data.size()) {
+                    throw ErrorCodes::Compression::ES7;
+                }
+                token.fileIdentifier = data.substr(pos, fileIdLen);
+                pos += fileIdLen;
+            }
+
+            // Read checksum.
+            if (pos + sizeof(uint32_t) > data.size()) {
+                throw ErrorCodes::Compression::ES8;
+            }
+            token.checksum = readValue<uint32_t>(data.data(), pos);
+
+            tokens.push_back(token);
+        }
         return tokens;
     }
 

@@ -20,6 +20,11 @@ namespace ErrorCodes {
         ES3, //Decompression failure.
         ES4, //Data integrity error.
 
+        ES5, //Data too small to contain token count (LZ77)
+        ES6, //Data too short for literal (LZ77)
+        ES7, //Data too short for file identifier (LZ77)
+        ES8, //Data too short for checksum (LZ77)
+
         EU1, //Invalid JSON input.
         EU2, //Unsupported file type.
         EU3, //Permission denied.
