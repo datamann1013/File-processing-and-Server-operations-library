@@ -13,7 +13,7 @@
     }
 
 
-TEST(LZMACompressorTest, CompressAndDecompress) {
+TEST(LosslessCompressionDecompressionTest, LZMACompressAndDecompress) {
     LZMACompressor compressor;
 
     auto compResult = compressor.compress("TestData");
@@ -27,7 +27,7 @@ TEST(LZMACompressorTest, CompressAndDecompress) {
     EXPECT_NE(decompResult.data, "");
 }
 
-TEST(ZIPCompressorTest, CompressAndDecompress) {
+TEST(LosslessCompressionDecompressionTest, ZIPCompressAndDecompress) {
     ZIPCompressor compressor;
 
     auto compResult = compressor.compress("TestData");
@@ -41,7 +41,7 @@ TEST(ZIPCompressorTest, CompressAndDecompress) {
     EXPECT_NE(decompResult.data, "");
 }
 
-TEST(H264CompressorTest, CompressAndDecompress) {
+TEST(LossyCompressDecompress, H264CompressAndDecompress) {
     H264Compressor compressor;
 
     auto compResult = compressor.compress("TestVideoData");
@@ -56,7 +56,7 @@ TEST(H264CompressorTest, CompressAndDecompress) {
 }
 
 
-TEST(JPEGCompressorTest, CompressAndDecompress) {
+TEST(LossyCompressDecompress, JPEGCompressAndDecompress) {
     JPEGCompressor compressor;
 
     auto compResult = compressor.compress("TestImageData");
