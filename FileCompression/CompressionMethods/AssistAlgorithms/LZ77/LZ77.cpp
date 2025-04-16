@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <cstdint>
 
 namespace CompressionAPI {
 
@@ -12,29 +11,6 @@ namespace CompressionAPI {
     constexpr size_t LOOKAHEAD_BUFFER_SIZE = 32;
 
     // TODO: Keep a copy of the data unaltered till success
-
-    struct Token {
-        // Specify position in input from where the match begins.
-        size_t offset;
-        size_t length;
-
-        // Stores literal data that follows the match
-        std::string literal;
-
-        // For cross-checking integrity
-        std::string fileIdentifier;
-
-        // Checksum for this token's data
-        uint32_t checksum;
-
-        // Indicates what kind of token this is. Helps the decompressor interpret the token correctly.
-        enum class TokenType {
-            LITERAL,      // No match found
-            MATCH,        // with offset and length
-            END_OF_BLOCK,
-            CONTROL       // For special control commands
-        } type;
-    };
 
 
 
@@ -51,6 +27,9 @@ namespace CompressionAPI {
         }
         return output;
     }
+
+    std::vector<Token> deserializeTokens(const std::string& data, bool includeFileId) { return 0; }
+
 
     CompressionResult compressBlob(const std::string& inputData) {
         CompressionResult result;
