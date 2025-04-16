@@ -133,8 +133,7 @@ TEST(CompressionAPITest, MissingMetadataTriggersWarning) {
 }
 
 TEST(FileLocatorTest, TestFilesDirectoryExists) {
-    std::string testDir = TEST_FILES_DIR; // Or use TEST_FILES_DIR if defined.
-    fs::path path(testDir);
+    fs::path path(TEST_FILES_DIR);
     std::cout << "Current working directory: " << fs::current_path() << std::endl;
     EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
 }
