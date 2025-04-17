@@ -19,7 +19,8 @@ public:
 
     // Logs an info for the given module.
     // Logs an info message; keeps last 100 entries in memory.
-    static void logInfo(const std::string &module, ErrorCodes::Compression infoCode, const std::string &context);
+    static void logInfo(const std::string &module, ErrorCodes::Compression infoCode, const std::string &
+                        context);
 
     // Retrieve the in-memory info log (most recent last), up to 100 entries.
     static std::vector<std::string> getInfoLog();
