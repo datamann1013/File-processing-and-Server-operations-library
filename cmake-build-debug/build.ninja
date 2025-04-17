@@ -362,14 +362,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmT
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
 
-build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/ErrorhandlerTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
-  DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
-  DEP_FILE = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\ErrorhandlerTests.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
-  OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-  OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CompressionDecompressionTests
@@ -378,7 +370,7 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTest
 #############################################
 # Link the executable bin\CompressionDecompressionTests.exe
 
-build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
+build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libFileCompression.dll.a  libErrorHandler.dll.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
@@ -387,6 +379,41 @@ build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionD
   TARGET_FILE = bin\CompressionDecompressionTests.exe
   TARGET_IMPLIB = Google_tests\libCompressionDecompressionTests.dll.a
   TARGET_PDB = CompressionDecompressionTests.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target ErrorHandlerTests
+
+
+#############################################
+# Order-only phony target for ErrorHandlerTests
+
+build cmake_object_order_depends_target_ErrorHandlerTests: phony || cmake_object_order_depends_target_ErrorHandler cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
+
+build Google_tests/CMakeFiles/ErrorHandlerTests.dir/ErrorhandlerTests.cpp.obj: CXX_COMPILER__ErrorHandlerTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/ErrorhandlerTests.cpp || cmake_object_order_depends_target_ErrorHandlerTests
+  DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
+  DEP_FILE = Google_tests\CMakeFiles\ErrorHandlerTests.dir\ErrorhandlerTests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/data0/CLionProjects/C++APIRepo/Errorhandler -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\ErrorHandlerTests.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\ErrorHandlerTests.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ErrorHandlerTests
+
+
+#############################################
+# Link the executable Google_tests\ErrorHandlerTests.exe
+
+build Google_tests/ErrorHandlerTests.exe: CXX_EXECUTABLE_LINKER__ErrorHandlerTests_Debug Google_tests/CMakeFiles/ErrorHandlerTests.dir/ErrorhandlerTests.cpp.obj | libErrorHandler.dll.a lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || bin/libErrorHandler.dll lib/libgtest.a lib/libgtest_main.a
+  FLAGS = -g
+  LINK_LIBRARIES = libErrorHandler.dll.a  lib/libgtest.a  lib/libgtest_main.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = Google_tests\CMakeFiles\ErrorHandlerTests.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Google_tests\ErrorHandlerTests.exe
+  TARGET_IMPLIB = Google_tests\libErrorHandlerTests.dll.a
+  TARGET_PDB = ErrorHandlerTests.exe.dbg
 
 
 #############################################
@@ -806,6 +833,10 @@ build CompressionDecompressionTests.exe: phony bin/CompressionDecompressionTests
 
 build ErrorHandler: phony bin/libErrorHandler.dll
 
+build ErrorHandlerTests: phony Google_tests/ErrorHandlerTests.exe
+
+build ErrorHandlerTests.exe: phony Google_tests/ErrorHandlerTests.exe
+
 build FileCompression: phony bin/libFileCompression.dll
 
 build example: phony example.exe
@@ -845,7 +876,7 @@ build all: phony libC__APIRepo.dll bin/libErrorHandler.dll bin/libFileCompressio
 #############################################
 # Folder: C:/Users/data0/CLionProjects/C++APIRepo/cmake-build-debug/Google_tests
 
-build Google_tests/all: phony bin/CompressionDecompressionTests.exe Google_tests/lib/all
+build Google_tests/all: phony bin/CompressionDecompressionTests.exe Google_tests/ErrorHandlerTests.exe Google_tests/lib/all
 
 # =============================================================================
 
