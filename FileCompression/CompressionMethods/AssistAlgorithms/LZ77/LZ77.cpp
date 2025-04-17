@@ -45,7 +45,7 @@ namespace CompressionAPI {
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
         std::string output;
 
-        std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset32 ? 0 : 1) + "::";
+        std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset32 ? 1 : 0) + "::";
         output.append(header);
 
 

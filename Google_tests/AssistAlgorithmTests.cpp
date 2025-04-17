@@ -25,6 +25,30 @@ TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
     EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
 }
 
+TEST(AssistAlgorithmTests, AppendAndReadInteger_LZ77) {
+    std::string output;
+    int32_t testVal = 123456;
+    CompressionAPI::appendValue(output, testVal);
+    ASSERT_EQ(output.size(), sizeof(testVal));
+
+    size_t pos = 0;
+    const int32_t readVal = CompressionAPI::readValue<int32_t>(output.data(), pos, sizeof(testVal));
+    EXPECT_EQ(testVal, readVal);
+    EXPECT_EQ(pos, sizeof(testVal));
+}
+
+TEST(AssistAlgorithmTests, AppendAndReadUint8_LZ77) {
+    std::string output;
+    constexpr uint8_t testVal = 42;
+    CompressionAPI::appendValue(output, testVal);
+    ASSERT_EQ(output.size(), sizeof(testVal));
+
+    size_t pos = 0;
+    const uint8_t readVal = CompressionAPI::readValue<uint8_t>(output.data(), pos, sizeof(testVal));
+    EXPECT_EQ(testVal, readVal);
+    EXPECT_EQ(pos, sizeof(testVal));
+}
+
 TEST(AssistAlgorithmTests, SerializeDeserializeICLog) {
     std::ostringstream capture; auto old = std::clog.rdbuf(capture.rdbuf());
     CompressionAPI::Token token{100,50,"lit","ID",0xABCD1234,CompressionAPI::Token::TokenType::MATCH};
@@ -36,10 +60,10 @@ TEST(AssistAlgorithmTests, SerializeDeserializeICLog) {
     ASSERT_LOG_CONTAINS(capture, "IC4"); // complete serialize
 
     //TODO: Make test dor deserialize
-    //capture.str(""); capture.clear();
-    //auto v2 = CompressionAPI::deserializeTokens(bin);
-    //ASSERT_LOG_CONTAINS(capture, "IC5"); // start deserialize
-    //ASSERT_LOG_CONTAINS(capture, "IC6"); // complete deserialize
+    capture.str(""); capture.clear();
+    auto v2 = CompressionAPI::deserializeTokens(bin);
+    ASSERT_LOG_CONTAINS(capture, "IC5"); // start deserialize
+    ASSERT_LOG_CONTAINS(capture, "IC6"); // complete deserialize
 
     std::clog.rdbuf(old);
 }
@@ -111,32 +135,6 @@ TEST(AssistAlgorithmTests, WithoutFileIdentifierAnd64BitOffset_LZ77) {
     EXPECT_EQ(t.checksum, token.checksum);
     EXPECT_EQ(t.type, token.type);
 }
-
-
-TEST(AssistAlgorithmTests, AppendAndReadInteger_LZ77) {
-    std::string output;
-    int32_t testVal = 123456;
-    CompressionAPI::appendValue(output, testVal);
-    ASSERT_EQ(output.size(), sizeof(testVal));
-
-    size_t pos = 0;
-    const int32_t readVal = CompressionAPI::readValue<int32_t>(output.data(), pos, sizeof(testVal));
-    EXPECT_EQ(testVal, readVal);
-    EXPECT_EQ(pos, sizeof(testVal));
-}
-
-TEST(AssistAlgorithmTests, AppendAndReadUint8_LZ77) {
-    std::string output;
-    constexpr uint8_t testVal = 42;
-    CompressionAPI::appendValue(output, testVal);
-    ASSERT_EQ(output.size(), sizeof(testVal));
-
-    size_t pos = 0;
-    const uint8_t readVal = CompressionAPI::readValue<uint8_t>(output.data(), pos, sizeof(testVal));
-    EXPECT_EQ(testVal, readVal);
-    EXPECT_EQ(pos, sizeof(testVal));
-}
-
 
 TEST(AssistAlgorithmTests, DeserializeTruncatedDataThrows_LZ77) {
     // Create a valid token, serialize it, then truncate the output.
