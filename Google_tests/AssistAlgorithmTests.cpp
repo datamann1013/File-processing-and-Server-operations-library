@@ -9,18 +9,18 @@
 
 namespace fs = std::filesystem;
 
-#define ASSERT_NOT_IMPLEMENTED(result)                             \
-    if (result.errorCode == ErrorCodes::Compression::ENN99) {      \
-    FAIL() << "Function not implemented (returned ENN99)";         \
+#define ASSERT_NOT_IMPLEMENTED(result)                                   \
+    if (result.errorCode == ErrorCodes::Compression::ENN99) {            \
+    FAIL() << "Function not implemented (returned ENN99)";               \
 }
 
-#define ASSERT_LOG_CONTAINS(result, parameter)                     \
-    if (result != parameter){                                      \
-    FAIL() << "Logging not correct";                               \
-}
+#define ASSERT_LOG_CONTAINS(strm, substr) {                              \
+    std::string s = strm.str(); EXPECT_NE(s.find(substr),                \
+        std::string::npos) << "Expected log to contain '"<<substr<<"'";  \
+        }
 
 TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
-    fs::path path(TEST_FILES_DIR);
+    const fs::path path(TEST_FILES_DIR);
     std::cout << "Current working directory: " << fs::current_path() << std::endl;
     EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
 }
@@ -53,13 +53,13 @@ TEST(AssistAlgorithmTests, WithFileIdentifierAnd32BitOffset_LZ77) {
     token.checksum = 0xDEADBEEF;
     token.type = CompressionAPI::Token::TokenType::MATCH;
 
-    std::vector<CompressionAPI::Token> tokens = { token };
+    std::vector tokens = { token };
 
     // Serialize tokens (include file identifier, use 32-bit offset).
-    std::string serialized = serializeTokens(tokens);
+    const std::string serialized = serializeTokens(tokens, false, true);
 
     // Deserialize tokens.
-    std::vector<CompressionAPI::Token> deserialized = CompressionAPI::deserializeTokens(serialized);
+    const std::vector<CompressionAPI::Token> deserialized = CompressionAPI::deserializeTokens(serialized);
     ASSERT_EQ(deserialized.size(), tokens.size());
     const CompressionAPI::Token &t = deserialized[0];
     EXPECT_EQ(t.offset, token.offset);
@@ -74,32 +74,32 @@ TEST(AssistAlgorithmTests, WithoutFileIdentifierAnd64BitOffset_LZ77) {
     // For the purpose of testing, we simulate configuration by temporarily modifying the header.
     // Assume we have another function overload or macro that sets includeFileId = false and offset64 = true.
     // For simplicity, here we create a token and then manually serialize with a modified header.
-    bool includeFileId = false;
-    bool offset64 = true;
+    constexpr bool includeFileId = false;
+    constexpr bool offset64 = true;
 
     // Build custom header.
-    std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset64 ? 1 : 0) + "::";
+    const std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset64 ? 1 : 0) + "::";
 
     CompressionAPI::Token token;
     token.offset = 1234567890123ull;
     token.length = 75;
     token.literal = "DataExample";
-    token.fileIdentifier = ""; // Not used.
+    token.fileIdentifier = "";
     token.checksum = 0xCAFEBABE;
     token.type = CompressionAPI::Token::TokenType::LITERAL;
 
-    std::vector<CompressionAPI::Token> tokens = { token };
+    const std::vector tokens = { token };
 
     // Serialize tokens using serializeTokens (which uses a fixed header configuration in this implementation).
     // Here, for testing, we can simulate by concatenating our header with the remainder from serializeTokens,
     // or by temporarily modifying serializeTokens to accept the header parameters.
     // For demonstration, we'll do the following:
-    std::string tokenData = serializeTokens(tokens);
+    std::string tokenData = serializeTokens(tokens, false, true);
     // Replace the header with our custom header.
     size_t headerEnd = tokenData.find("::", 0);
     headerEnd = tokenData.find("::", headerEnd + 2);
     headerEnd += 2; // Position after the second ::
-    std::string customSerialized = header + tokenData.substr(headerEnd);
+    const std::string customSerialized = header + tokenData.substr(headerEnd);
 
     std::vector<CompressionAPI::Token> deserialized = CompressionAPI::deserializeTokens(customSerialized);
     ASSERT_EQ(deserialized.size(), tokens.size());
@@ -119,19 +119,19 @@ TEST(AssistAlgorithmTests, AppendAndReadInteger_LZ77) {
     ASSERT_EQ(output.size(), sizeof(testVal));
 
     size_t pos = 0;
-    int32_t readVal = CompressionAPI::readValue<int32_t>(output.data(), pos);
+    const int32_t readVal = CompressionAPI::readValue<int32_t>(output.data(), pos, sizeof(testVal));
     EXPECT_EQ(testVal, readVal);
     EXPECT_EQ(pos, sizeof(testVal));
 }
 
 TEST(AssistAlgorithmTests, AppendAndReadUint8_LZ77) {
     std::string output;
-    uint8_t testVal = 42;
+    constexpr uint8_t testVal = 42;
     CompressionAPI::appendValue(output, testVal);
     ASSERT_EQ(output.size(), sizeof(testVal));
 
     size_t pos = 0;
-    uint8_t readVal = CompressionAPI::readValue<uint8_t>(output.data(), pos);
+    const uint8_t readVal = CompressionAPI::readValue<uint8_t>(output.data(), pos, sizeof(testVal));
     EXPECT_EQ(testVal, readVal);
     EXPECT_EQ(pos, sizeof(testVal));
 }
@@ -145,17 +145,17 @@ TEST(AssistAlgorithmTests, DeserializeTruncatedDataThrows_LZ77) {
     token.literal = "DataForTest";
     token.fileIdentifier = "File.txt";
     token.checksum = 123456;
-    token.type = static_cast<uint8_t>(CompressionAPI::Token::TokenType::MATCH);
+    token.type = CompressionAPI::Token::TokenType::MATCH;
 
     std::vector<CompressionAPI::Token> tokens = {token};
-    std::string serialized = serializeTokens(tokens, true);
+    const std::string serialized = serializeTokens(tokens, true, true);
 
     // Truncate the string by removing the last 5 bytes.
-    std::string truncated = serialized.substr(0, serialized.size() - 5);
+    const std::string truncated = serialized.substr(0, serialized.size() - 5);
 
     // Expect deserialization to throw an exception due to insufficient data.
     EXPECT_THROW({
-        auto tokensDeser = CompressionAPI::deserializeTokens(truncated, true);
+        auto tokensDeser = CompressionAPI::deserializeTokens(truncated);
     }, std::runtime_error);
 }
 

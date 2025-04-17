@@ -184,7 +184,7 @@ namespace CompressionAPI {
                 // Optionally include the next symbol after the match if necessary.
                 char nextSymbol = (currentPosition + bestMatchLength < inputLength)
                                   ? inputData[currentPosition + bestMatchLength] : '\0';
-                tokens.push_back({bestMatchOffset, bestMatchLength, nextSymbol});
+               //TODO: tokens.push_back({bestMatchOffset, bestMatchLength, nextSymbol});
 
                 // Advance the currentPosition by the length of the match plus one (if nextSymbol is used).
                 // Adjust this based on your token scheme.
@@ -193,14 +193,14 @@ namespace CompressionAPI {
             } else {
                 // No match found: output a literal token.
                 std::cout << "No match, output literal: " << inputData[currentPosition] << "\n";
-                tokens.push_back({0, 0, inputData[currentPosition]});
+               //TODO: tokens.push_back({0, 0, inputData[currentPosition]});
                 currentPosition += 1;
             }
         }
 
         // TODO: Serialize the tokens into the final compressed output.
         // Replace the stub below with your actual serialization logic.
-        result.data = serializeTokens(tokens);
+        result.data = serializeTokens(tokens, includeID, offset32);
 
         // Indicate a successful operation if tokens were generated.
         // Once fully implemented, check for errors and update errorCode accordingly.
