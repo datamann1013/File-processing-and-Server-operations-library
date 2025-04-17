@@ -14,35 +14,35 @@ namespace CompressionAPI {
 
     // TODO: Keep a copy of the data unaltered till success
 
-
     // TODO: Package level checksum
 
 
 
     // Append value in binary to output string
     template<typename T> void appendValue(std::string &output, const T &value) {
-        ErrorHandler::logError("LZ77::appendValue", ErrorCodes::Compression::IC1, "appendValue start");
+        ErrorHandler::logInfo("LZ77::appendValue", ErrorCodes::Compression::IC1, "appendValue start");
         output.append(reinterpret_cast<const char*>(&value), sizeof(T));
-        ErrorHandler::logError("LZ77::appendValue", ErrorCodes::Compression::IC2, "appendValue complete");
+        ErrorHandler::logInfo("LZ77::appendValue", ErrorCodes::Compression::IC2, "appendValue complete");
     }
 
     // Read a value from the data
     template<typename T> T readValue(const char* data, size_t &pos, size_t totalSize) {
-        ErrorHandler::logError("LZ77::readValue", ErrorCodes::Compression::IC1, "readValue start");
+        ErrorHandler::logInfo("LZ77::readValue", ErrorCodes::Compression::IC1, "readValue start");
         if (pos + sizeof(T) > totalSize) {
+            ErrorHandler::logError("LZ::readValue", ErrorCodes::Compression::ES9, "readValue too big");
             throw ErrorCodes::Compression::ES9;
         }
         T value;
         std::memcpy(&value, data + pos, sizeof(T));
         pos += sizeof(T);
-        ErrorHandler::logError("LZ77::readValue", ErrorCodes::Compression::IC2, "readValue complete");
+        ErrorHandler::logInfo("LZ77::readValue", ErrorCodes::Compression::IC2, "readValue complete");
         return value;
     }
 
 
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool offset32) {
 
-        ErrorHandler::logError("LZ77::serializeTokens", ErrorCodes::Compression::IC2, "serializeTokens start");
+        ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
         std::string output;
 
         std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset32 ? 0 : 1) + "::";
@@ -81,24 +81,30 @@ namespace CompressionAPI {
             }
 
             appendValue(output, token.checksum);
-            ErrorHandler::logError("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens complete");
+            ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC4, "serializeTokens complete");
         }
         return output;
     }
 
     std::vector<Token> deserializeTokens(const std::string& data) {
-        ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::IC4, "deserializeTokens start");
+        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens start");
         std::vector<Token> tokens;
         size_t pos = 0;
         size_t totalSize = data.size();
         // Parse header
         const std::string delim = "::";
         auto f = data.find(delim, pos);
-        if (f == std::string::npos) throw ErrorCodes::Compression::ES15;
+        if (f == std::string::npos) {
+            ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
+            throw ErrorCodes::Compression::ES15;
+        }
         bool includeID = (data.substr(0,f) == "1");
         pos = f + 2;
         f = data.find(delim, pos);
-        if (f == std::string::npos) throw ErrorCodes::Compression::ES15;
+        if (f == std::string::npos) {
+            ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
+            throw ErrorCodes::Compression::ES15;
+        }
         bool offset32 = (data.substr(pos,f-pos) == "1");
         pos = f + 2;
         // Token count
@@ -125,12 +131,12 @@ namespace CompressionAPI {
             t.checksum = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4;
             tokens.push_back(t);
         }
-        ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens complete"); // IC log
+        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6, "deserializeTokens complete");
         return tokens;
     }
 
 
-    CompressionResult compressBlob(const std::string& inputData) {
+    CompressionResult compressBlob(const std::string& inputData, bool includeID, bool offset32) {
         CompressionResult result;
 
         size_t inputLength = inputData.size();

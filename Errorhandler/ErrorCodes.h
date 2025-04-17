@@ -43,10 +43,11 @@ namespace ErrorCodes {
         WS1,  // Low compression ratio or performance issue.
 
         IC1,  // Operation initiated
-        IC2,  // SerializeTokens start
-        IC3,  // SerializeTokens complete
-        IC4,  // DeserializeTokens start
-        IC5,  // DeserializeTokens complete
+        IC2,  // Operation complete
+        IC3,  // SerializeTokens start
+        IC4,  // SerializeTokens complete
+        IC5,  // DeserializeTokens start
+        IC6,  // DeserializeTokens complete
 
         ENN99 // Not implemented
     };

@@ -14,6 +14,9 @@ public:
     // errorCode: The error code from ErrorCodes.
     // context: Additional contextual information.
     static void logError(const std::string& module, ErrorCodes::Compression errorCode, const std::string& context);
+
+    // Logs an info for the given module.
+    static void logInfo(const std::string &module, ErrorCodes::Compression errorCode, const std::string &context);
 };
 
 #endif // ERROR_HANDLER_H
