@@ -14,10 +14,33 @@ namespace fs = std::filesystem;
     FAIL() << "Function not implemented (returned ENN99)";         \
 }
 
+#define ASSERT_LOG_CONTAINS(result, parameter)                     \
+    if (result != parameter){                                      \
+    FAIL() << "Logging not correct";                               \
+}
+
 TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
     fs::path path(TEST_FILES_DIR);
     std::cout << "Current working directory: " << fs::current_path() << std::endl;
     EXPECT_TRUE(fs::exists(path)) << "TestFiles directory not found: " << path.string();
+}
+
+TEST(AssistAlgorithmTests, SerializeDeserializeICLog) {
+    std::ostringstream capture; auto old = std::cerr.rdbuf(capture.rdbuf());
+    CompressionAPI::Token token{100,50,"lit","ID",0xABCD1234,CompressionAPI::Token::TokenType::MATCH};
+
+    std::vector<CompressionAPI::Token> v={token};
+    auto bin = CompressionAPI::serializeTokens(v,true,true);
+
+    ASSERT_LOG_CONTAINS(capture, "IC2"); // start serialize
+    ASSERT_LOG_CONTAINS(capture, "IC3"); // complete serialize
+
+    capture.str(""); capture.clear();
+    auto v2 = CompressionAPI::deserializeTokens(bin);
+    ASSERT_LOG_CONTAINS(capture, "IC4"); // start deserialize
+    ASSERT_LOG_CONTAINS(capture, "IC5"); // complete deserialize
+
+    std::cerr.rdbuf(old);
 }
 
 TEST(AssistAlgorithmTests, WithFileIdentifierAnd32BitOffset_LZ77) {

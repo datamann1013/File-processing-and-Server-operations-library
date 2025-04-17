@@ -87,6 +87,7 @@ namespace CompressionAPI {
     }
 
     std::vector<Token> deserializeTokens(const std::string& data) {
+
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens start");
         std::vector<Token> tokens;
         size_t pos = 0;
