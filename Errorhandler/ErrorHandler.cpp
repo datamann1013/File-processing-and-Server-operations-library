@@ -58,7 +58,7 @@ const char* ErrorHandler::toString(Compression code) {
 void ErrorHandler::logError(const std::string& module, Compression errorCode, const std::string& context) {
     // Log standard error stream.
     // Will log to database later
-    std::cerr << "[" << module << "] Error Code: " << static_cast<int>(errorCode)
+    std::cerr << "[" << module << "] Error Code: " << toString(errorCode) << " / " << static_cast<int>(errorCode)
               << " | Context: " << context << std::endl;
 }
 
