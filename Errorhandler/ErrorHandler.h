@@ -8,7 +8,7 @@
 
 #include "ErrorCodes.h"
 
-// Centralizes error logging and management
+// Centralizes error/info logging; retains last 100 info messages.
 class ErrorHandler {
 public:
     // Logs an error for the given module.
@@ -23,7 +23,12 @@ public:
                         context);
 
     // Retrieve the in-memory info log (most recent last), up to 100 entries.
+    // Most recent entries appear at the end of the vector.
     static std::vector<std::string> getInfoLog();
+
+private:
+    // Turn an enum value into its literal name
+    static const char* toString(ErrorCodes::Compression code);
 };
 
 #endif // ERROR_HANDLER_H

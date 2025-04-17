@@ -34,6 +34,6 @@ void ErrorHandler::logInfo(const std::string& module, ErrorCodes::Compression in
 }
 
 std::vector<std::string> ErrorHandler::getInfoLog() {
-    std::lock_guard<std::mutex> lk(_infoMutex);
+    std::lock_guard lk(_infoMutex);
     return { _infoBuffer.begin(), _infoBuffer.end() };
 }

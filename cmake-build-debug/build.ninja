@@ -55,8 +55,6 @@ build CMakeFiles/C__APIRepo.dir/library.cpp.obj: CXX_COMPILER__C__APIRepo_unscan
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir
-  TARGET_COMPILE_PDB = CMakeFiles\C__APIRepo.dir\
-  TARGET_PDB = libC__APIRepo.pdb
 
 build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.cpp || cmake_object_order_depends_target_C__APIRepo
   DEFINES = -DC__APIRepo_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -64,8 +62,6 @@ build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMethods/AssistAlgorit
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMethods\AssistAlgorithms\LZ77
-  TARGET_COMPILE_PDB = CMakeFiles\C__APIRepo.dir\
-  TARGET_PDB = libC__APIRepo.pdb
 
 build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMethods/AssistAlgorithms/Huffman/Huffman.cpp.obj: CXX_COMPILER__C__APIRepo_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/AssistAlgorithms/Huffman/Huffman.cpp || cmake_object_order_depends_target_C__APIRepo
   DEFINES = -DC__APIRepo_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -73,8 +69,6 @@ build CMakeFiles/C__APIRepo.dir/FileCompression/CompressionMethods/AssistAlgorit
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\C__APIRepo.dir
   OBJECT_FILE_DIR = CMakeFiles\C__APIRepo.dir\FileCompression\CompressionMethods\AssistAlgorithms\Huffman
-  TARGET_COMPILE_PDB = CMakeFiles\C__APIRepo.dir\
-  TARGET_PDB = libC__APIRepo.pdb
 
 
 # =============================================================================
@@ -91,10 +85,9 @@ build libC__APIRepo.dll libC__APIRepo.dll.a: CXX_SHARED_LIBRARY_LINKER__C__APIRe
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_COMPILE_PDB = CMakeFiles\C__APIRepo.dir\
   TARGET_FILE = libC__APIRepo.dll
   TARGET_IMPLIB = libC__APIRepo.dll.a
-  TARGET_PDB = libC__APIRepo.pdb
+  TARGET_PDB = C__APIRepo.dll.dbg
 
 # =============================================================================
 # Object build statements for SHARED_LIBRARY target ErrorHandler
@@ -111,8 +104,6 @@ build CMakeFiles/ErrorHandler.dir/library.cpp.obj: CXX_COMPILER__ErrorHandler_un
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\ErrorHandler.dir
   OBJECT_FILE_DIR = CMakeFiles\ErrorHandler.dir
-  TARGET_COMPILE_PDB = CMakeFiles\ErrorHandler.dir\
-  TARGET_PDB = bin\libErrorHandler.pdb
 
 build CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj: CXX_COMPILER__ErrorHandler_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Errorhandler/ErrorHandler.cpp || cmake_object_order_depends_target_ErrorHandler
   DEFINES = -DErrorHandler_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -120,8 +111,6 @@ build CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj: CXX_COMPILE
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\ErrorHandler.dir
   OBJECT_FILE_DIR = CMakeFiles\ErrorHandler.dir\Errorhandler
-  TARGET_COMPILE_PDB = CMakeFiles\ErrorHandler.dir\
-  TARGET_PDB = bin\libErrorHandler.pdb
 
 
 # =============================================================================
@@ -138,10 +127,9 @@ build bin/libErrorHandler.dll libErrorHandler.dll.a: CXX_SHARED_LIBRARY_LINKER__
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_COMPILE_PDB = CMakeFiles\ErrorHandler.dir\
   TARGET_FILE = bin\libErrorHandler.dll
   TARGET_IMPLIB = libErrorHandler.dll.a
-  TARGET_PDB = bin\libErrorHandler.pdb
+  TARGET_PDB = ErrorHandler.dll.dbg
 
 # =============================================================================
 # Object build statements for SHARED_LIBRARY target FileCompression
@@ -158,8 +146,6 @@ build CMakeFiles/FileCompression.dir/library.cpp.obj: CXX_COMPILER__FileCompress
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 build CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj: CXX_COMPILER__FileCompression_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionAPI.cpp || cmake_object_order_depends_target_FileCompression
   DEFINES = -DFileCompression_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -167,8 +153,6 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionAPI.cpp.obj: CXX
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir\FileCompression
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp.obj: CXX_COMPILER__FileCompression_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/LZMA/LZMACompressor.cpp || cmake_object_order_depends_target_FileCompression
   DEFINES = -DFileCompression_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -176,8 +160,6 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/LZMA/LZM
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir\FileCompression\CompressionMethods\LZMA
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/ZIP/ZIPCompressor.cpp.obj: CXX_COMPILER__FileCompression_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/ZIP/ZIPCompressor.cpp || cmake_object_order_depends_target_FileCompression
   DEFINES = -DFileCompression_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -185,8 +167,6 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/ZIP/ZIPC
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir\FileCompression\CompressionMethods\ZIP
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H264Compressor.cpp.obj: CXX_COMPILER__FileCompression_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/H264/H264Compressor.cpp || cmake_object_order_depends_target_FileCompression
   DEFINES = -DFileCompression_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -194,8 +174,6 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/H264/H26
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir\FileCompression\CompressionMethods\H264
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp.obj: CXX_COMPILER__FileCompression_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/FileCompression/CompressionMethods/JPEG/JPEGCompressor.cpp || cmake_object_order_depends_target_FileCompression
   DEFINES = -DFileCompression_EXPORTS -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -203,8 +181,6 @@ build CMakeFiles/FileCompression.dir/FileCompression/CompressionMethods/JPEG/JPE
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\FileCompression.dir
   OBJECT_FILE_DIR = CMakeFiles\FileCompression.dir\FileCompression\CompressionMethods\JPEG
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
-  TARGET_PDB = bin\libFileCompression.pdb
 
 
 # =============================================================================
@@ -221,10 +197,9 @@ build bin/libFileCompression.dll libFileCompression.dll.a: CXX_SHARED_LIBRARY_LI
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_COMPILE_PDB = CMakeFiles\FileCompression.dir\
   TARGET_FILE = bin\libFileCompression.dll
   TARGET_IMPLIB = libFileCompression.dll.a
-  TARGET_PDB = bin\libFileCompression.pdb
+  TARGET_PDB = FileCompression.dll.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target example
@@ -241,8 +216,6 @@ build CMakeFiles/example.dir/library.cpp.obj: CXX_COMPILER__example_unscanned_De
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\example.dir
   OBJECT_FILE_DIR = CMakeFiles\example.dir
-  TARGET_COMPILE_PDB = CMakeFiles\example.dir\
-  TARGET_PDB = example.pdb
 
 
 # =============================================================================
@@ -258,10 +231,9 @@ build example.exe: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/l
   OBJECT_DIR = CMakeFiles\example.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\example.dir\
   TARGET_FILE = example.exe
   TARGET_IMPLIB = libexample.dll.a
-  TARGET_PDB = example.pdb
+  TARGET_PDB = example.exe.dbg
 
 
 #############################################
@@ -349,8 +321,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionT
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
 
 build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/FileDeCompressionTest.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
   DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -359,8 +329,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressio
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
 
 build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CompressionMethodTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
   DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -369,8 +337,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMetho
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
 
 build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/Testassists/DummyfileGenerator/dummyFileGenerator.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
   DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -379,8 +345,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/Dumm
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\Testassists\DummyfileGenerator
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
 
 build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/Testassists/FileLocator/FileLocator.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
   DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -389,8 +353,6 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/File
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\Testassists\FileLocator
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
 
 build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/AssistAlgorithmTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
   DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
@@ -399,8 +361,14 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmT
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
+
+build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/ErrorhandlerTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
+  DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
+  DEP_FILE = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\ErrorhandlerTests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
 
 
 # =============================================================================
@@ -410,16 +378,15 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmT
 #############################################
 # Link the executable bin\CompressionDecompressionTests.exe
 
-build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
+build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libFileCompression.dll.a  libErrorHandler.dll.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\
   TARGET_FILE = bin\CompressionDecompressionTests.exe
   TARGET_IMPLIB = Google_tests\libCompressionDecompressionTests.dll.a
-  TARGET_PDB = bin\CompressionDecompressionTests.pdb
+  TARGET_PDB = CompressionDecompressionTests.exe.dbg
 
 
 #############################################
@@ -577,8 +544,6 @@ build Google_tests/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX
   INCLUDES = -IC:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/include -IC:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock.dir
   OBJECT_FILE_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock.dir\src
-  TARGET_COMPILE_PDB = lib\libgmockpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin\libgmockpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -593,9 +558,8 @@ build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug Google_tests/lib/go
   OBJECT_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = lib\libgmockpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib\libgmock.a
-  TARGET_PDB = bin\libgmockpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gmock.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gmock_main
@@ -613,8 +577,6 @@ build Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.ob
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir
   OBJECT_FILE_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\src
-  TARGET_COMPILE_PDB = lib\libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin\libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -629,9 +591,8 @@ build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug Google_te
   OBJECT_DIR = Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = lib\libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib\libgmock_main.a
-  TARGET_PDB = bin\libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gmock_main.a.dbg
 
 
 #############################################
@@ -719,8 +680,6 @@ build Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX
   INCLUDES = -IC:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -IC:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\lib\googletest\CMakeFiles\gtest.dir
   OBJECT_FILE_DIR = Google_tests\lib\googletest\CMakeFiles\gtest.dir\src
-  TARGET_COMPILE_PDB = lib\libgtestpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin\libgtestpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -735,9 +694,8 @@ build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug Google_tests/lib/go
   OBJECT_DIR = Google_tests\lib\googletest\CMakeFiles\gtest.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = lib\libgtestpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib\libgtest.a
-  TARGET_PDB = bin\libgtestpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gtest.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gtest_main
@@ -755,8 +713,6 @@ build Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.ob
   INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\lib\googletest\CMakeFiles\gtest_main.dir
   OBJECT_FILE_DIR = Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\src
-  TARGET_COMPILE_PDB = lib\libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin\libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -771,9 +727,8 @@ build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug Google_te
   OBJECT_DIR = Google_tests\lib\googletest\CMakeFiles\gtest_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = lib\libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib\libgtest_main.a
-  TARGET_PDB = bin\libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gtest_main.a.dbg
 
 
 #############################################
@@ -920,14 +875,14 @@ build Google_tests/lib/googletest/all: phony lib/libgtest.a lib/libgtest_main.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/GNUInstallDirs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake C$:/Users/data0/CLionProjects/C++APIRepo/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/Config.cmake.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/internal_utils.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/GNUInstallDirs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake C$:/Users/data0/CLionProjects/C++APIRepo/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/Config.cmake.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/internal_utils.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/GNUInstallDirs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake C$:/Users/data0/CLionProjects/C++APIRepo/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/Config.cmake.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/internal_utils.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/GNUInstallDirs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake C$:/Users/data0/CLionProjects/C++APIRepo/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googlemock/cmake/gmock_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/CMakeLists.txt C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/Config.cmake.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/gtest_main.pc.in C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/cmake/internal_utils.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
 
 
 #############################################

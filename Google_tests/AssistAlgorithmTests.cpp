@@ -53,8 +53,8 @@ TEST(AssistAlgorithmTests, SerializeDeserializeICLog) {
     std::ostringstream capture; auto old = std::clog.rdbuf(capture.rdbuf());
     CompressionAPI::Token token{100,50,"lit","ID",0xABCD1234,CompressionAPI::Token::TokenType::MATCH};
 
-    std::vector<CompressionAPI::Token> v={token};
-    auto bin = CompressionAPI::serializeTokens(v,true,true);
+    std::vector v={token};
+    auto bin = serializeTokens(v,true,true);
 
     ASSERT_LOG_CONTAINS(capture, "IC3"); // start serialize
     ASSERT_LOG_CONTAINS(capture, "IC4"); // complete serialize
