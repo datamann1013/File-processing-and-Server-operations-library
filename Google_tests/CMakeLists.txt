@@ -16,6 +16,8 @@ add_executable(CompressionDecompressionTests
         Testassists/FileLocator/FileLocator.cpp
         Testassists/FileLocator/FileLocator.h
         AssistAlgorithmTests.cpp
+        UnitTests/LZZ77UnitTests.cpp
+        IntegrationTests/LZ77IntegrationTests.cpp
 )
 target_link_libraries(CompressionDecompressionTests gtest gtest_main FileCompression ErrorHandler)
 

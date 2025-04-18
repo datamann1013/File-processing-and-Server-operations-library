@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <string>
+#include <cstring>
 #include "../../../../Errorhandler/ErrorCodes.h"
 #include "../../../../Errorhandler/ErrorHandler.h"
 
@@ -79,6 +80,26 @@ namespace CompressionAPI {
      * @return CompressionResult with decompressed data and an error code.
      */
     CompressionResult decompressBlob(const std::string& input);
+
+    // Read a value from the data
+    template<typename T> T readValue(const char* data, size_t &pos, size_t totalSize) {
+        ErrorHandler::logInfo("LZ77::readValue", ErrorCodes::Compression::IC1, "readValue start");
+        if (pos + sizeof(T) > totalSize) {
+            ErrorHandler::logError("LZ::readValue", ErrorCodes::Compression::ES9, "readValue too big");
+            throw ErrorCodes::Compression::ES9;
+        }
+        T value;
+        std::memcpy(&value, data + pos, sizeof(T));
+        pos += sizeof(T);
+        ErrorHandler::logInfo("LZ77::readValue", ErrorCodes::Compression::IC2, "readValue complete");
+        return value;
+    }
+    // Append value in binary to output string
+    template<typename T> void appendValue(std::string &output, const T &value) {
+        ErrorHandler::logInfo("LZ77::appendValue", ErrorCodes::Compression::IC1, "appendValue start");
+        output.append(reinterpret_cast<const char*>(&value), sizeof(T));
+        ErrorHandler::logInfo("LZ77::appendValue", ErrorCodes::Compression::IC2, "appendValue complete");
+    }
 }
 
 #endif // LZ77_H

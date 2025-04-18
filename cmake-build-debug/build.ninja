@@ -362,6 +362,22 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmT
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
 
+build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/UnitTests/LZZ77UnitTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
+  DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
+  DEP_FILE = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\UnitTests\LZZ77UnitTests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\UnitTests
+
+build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj: CXX_COMPILER__CompressionDecompressionTests_unscanned_Debug C$:/Users/data0/CLionProjects/C++APIRepo/Google_tests/IntegrationTests/LZ77IntegrationTests.cpp || cmake_object_order_depends_target_CompressionDecompressionTests
+  DEFINES = -DTEST_FILES_DIR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles\" -DTEST_FILE_SINGULAR=\"C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/TestFiles/artificl/random.txt\"
+  DEP_FILE = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\IntegrationTests\LZ77IntegrationTests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest/include -isystem C:/Users/data0/CLionProjects/C++APIRepo/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir\IntegrationTests
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CompressionDecompressionTests
@@ -370,7 +386,7 @@ build Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmT
 #############################################
 # Link the executable bin\CompressionDecompressionTests.exe
 
-build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
+build bin/CompressionDecompressionTests.exe: CXX_EXECUTABLE_LINKER__CompressionDecompressionTests_Debug Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/FileDeCompressionTest.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/CompressionMethodTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/DummyfileGenerator/dummyFileGenerator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/Testassists/FileLocator/FileLocator.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libFileCompression.dll.a libErrorHandler.dll.a lib/libgtest.a || bin/libErrorHandler.dll bin/libFileCompression.dll lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libFileCompression.dll.a  libErrorHandler.dll.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\CompressionDecompressionTests.dir
