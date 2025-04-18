@@ -68,7 +68,7 @@ TEST(LZ77_Integration, Deserialize_CorruptedData_Throws) {
 }
 
 // compressBlob + decompressBlob must return the original data.
-TEST(LZ77Integration, CompressDecompress_RoundTrip) {
+TEST(LZ77_Integration, CompressDecompress_RoundTrip) {
     std::string data = "AAAAABBBBBCCCCCDDDDDEEEEE";
     auto c = compressBlob(data, false, true);
     ASSERT_EQ(c.errorCode, Compression::SUCCESS);
@@ -78,7 +78,7 @@ TEST(LZ77Integration, CompressDecompress_RoundTrip) {
 }
 
 // Flip checksum bytes → throws ES2
-TEST(LZ77Integration, Deserialize_CorruptChecksum) {
+TEST(LZ77_Integration, Deserialize_CorruptChecksum) {
     auto s = serializeTokens({{/*…*/}}, true, true);
     // flip one checksum byte:
     s[s.size()-1] ^= 0xFF;

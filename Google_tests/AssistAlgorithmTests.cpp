@@ -32,7 +32,7 @@ TEST(AssistAlgorithmTests, LZ77CompressTest) {
     buffer << file.rdbuf();
     std::string inputData = buffer.str();
 
-    auto result = CompressionAPI::compressBlob(inputData);
+    auto result = CompressionAPI::compressBlob(inputData, true, true);
 
     ASSERT_NOT_IMPLEMENTED(result);
 
