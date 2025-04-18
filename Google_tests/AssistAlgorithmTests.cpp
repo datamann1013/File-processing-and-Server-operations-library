@@ -148,7 +148,7 @@ TEST(AssistAlgorithmTests, DeserializeTruncatedDataThrows_LZ77) {
     // Expect deserialization to throw an exception due to insufficient data.
     EXPECT_THROW({
         auto tokensDeser = CompressionAPI::deserializeTokens(truncated);
-    }, std::runtime_error);
+    }, ErrorCodes::Compression);
 }
 
 TEST(AssistAlgorithmTests, LZ77CompressTest) {

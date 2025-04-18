@@ -40,6 +40,7 @@ namespace CompressionAPI {
     }
 
 
+
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
 
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
@@ -89,49 +90,79 @@ namespace CompressionAPI {
     std::vector<Token> deserializeTokens(const std::string& data) {
 
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens start");
+
         std::vector<Token> tokens;
         size_t pos = 0;
         size_t totalSize = data.size();
-        // Parse header
+
+        // Parse headerflags
         const std::string delim = "::";
         auto f = data.find(delim, pos);
         if (f == std::string::npos) {
             ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
             throw ErrorCodes::Compression::ES15;
         }
-        bool includeID = (data.substr(0,f) == "1");
-        pos = f + 2;
+
+        bool includeID = (data.substr(pos, f - pos) == "1");
+        pos = f + delim.size();
+
         f = data.find(delim, pos);
         if (f == std::string::npos) {
             ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
             throw ErrorCodes::Compression::ES15;
         }
-        bool offset32 = (data.substr(pos,f-pos) == "1");
-        pos = f + 2;
+
+        bool offset32 = (data.substr(pos, f - pos) == "1");
+        pos = f + delim.size();
+
+
         // Token count
         uint32_t count = readValue<uint32_t>(data.data(), pos, totalSize);
 
         for (uint32_t i=0; i<count; ++i) {
             Token t;
+
             // Offset
-            if (offset32) { t.offset = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4; }
-            else { t.offset = *reinterpret_cast<const uint64_t*>(data.data()+pos); pos+=8; }
+            if (offset32) {
+                t.offset = readValue<uint32_t>(data.data(), pos, totalSize);
+            }
+            else {
+                t.offset = readValue<uint64_t>(data.data(), pos, totalSize);
+            }
+
             // Length
-            t.length = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4;
+            t.length = readValue<uint32_t>(data.data(), pos, totalSize);
+
             // Type
-            t.type = static_cast<Token::TokenType>(data[pos]); pos+=1;
+            uint8_t rawType = readValue<uint8_t>(data.data(), pos, totalSize);
+            t.type = static_cast<Token::TokenType>(rawType);
+
             // Literal
-            uint32_t ll = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4;
-            t.literal = data.substr(pos, ll); pos+=ll;
+            uint32_t litLen = readValue<uint32_t>(data.data(), pos, totalSize);
+            if (pos + litLen > totalSize) {
+                ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17, "Truncated literal data");
+                throw ErrorCodes::Compression::ES17;
+
+            }
+            t.literal = data.substr(pos, litLen);
+            pos += litLen;
+
             // File ID
             if (includeID) {
-                uint32_t idl = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4;
-                t.fileIdentifier = data.substr(pos, idl); pos+=idl;
+                uint32_t idLen = readValue<uint32_t>(data.data(), pos, totalSize);
+                if (pos + idLen > totalSize) {
+                    ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17, "Truncated fileIdentifier data");
+                    throw ErrorCodes::Compression::ES17;
+                }
+                t.fileIdentifier = data.substr(pos, idLen);
+                pos += idLen;
             }
-            // Checksum
-            t.checksum = *reinterpret_cast<const uint32_t*>(data.data()+pos); pos+=4;
+
+            t.checksum = readValue<uint32_t>(data.data(), pos, totalSize);
             tokens.push_back(t);
+
         }
+
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6, "deserializeTokens complete");
         return tokens;
     }
