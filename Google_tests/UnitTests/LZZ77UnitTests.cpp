@@ -1,6 +1,5 @@
 // Created by data0 on 18.04.2025.
 
-// LZ77UnitTests.cpp
 #include <gtest/gtest.h>
 #include "../../FileCompression/CompressionMethods/AssistAlgorithms/LZ77/LZ77.h"
 #include "../../Errorhandler/ErrorCodes.h"
