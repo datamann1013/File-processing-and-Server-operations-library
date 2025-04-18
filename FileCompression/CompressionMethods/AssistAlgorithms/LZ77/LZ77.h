@@ -59,7 +59,7 @@ namespace CompressionAPI {
 
     // TODO: Consider adding a delimiter (e.g., "::") between literal length and literal data for readability if needed.
     // TODO: Consider compressing fields further (e.g., varint encoding) for space efficiency.
-    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool offset32);
+    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset);
 
     // Parameters:
     //  - data: The binary string containing the serialized tokens.

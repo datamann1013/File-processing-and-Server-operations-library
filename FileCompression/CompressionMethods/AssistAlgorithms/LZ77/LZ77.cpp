@@ -40,12 +40,12 @@ namespace CompressionAPI {
     }
 
 
-    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool offset32) {
+    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
 
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
         std::string output;
 
-        std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(offset32 ? 1 : 0) + "::";
+        std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(use32BitOffset ? 1 : 0) + "::";
         output.append(header);
 
 
@@ -55,7 +55,7 @@ namespace CompressionAPI {
 
         for (const auto &token : tokens) {
 
-            if (offset32) {
+            if (use32BitOffset) {
                 uint32_t offsetVal = token.offset;
                 appendValue(output, offsetVal);
             }

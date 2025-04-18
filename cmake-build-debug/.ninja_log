@@ -40,3 +40,11 @@
 48	1858	7666240198430876	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/ErrorhandlerTests.cpp.obj	176dccb6213f2a42
 1347	5428	7666649643677872	Google_tests/ErrorHandlerTests.exe	a902944c6f7bc9b4
 10	6235	7666654743658137	bin/ErrorHandlerTests.exe	6cdb09206ae5bc58
+13	3040	7666657023539902	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+3041	9702	7666657053826727	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
+10	2858	7666658052912060	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+2859	9314	7666658081400409	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
+13	3094	7666658848972529	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+3094	9752	7666658879787253	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
+14	3037	7666661447163728	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+3038	9738	7666661477404737	bin/CompressionDecompressionTests.exe	a8f1d20a9ea23c2
