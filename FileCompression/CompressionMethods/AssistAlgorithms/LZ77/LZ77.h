@@ -73,7 +73,7 @@ namespace CompressionAPI {
      * @param input The input data to compress.
      * @return CompressionResult with compressed data and an error code.
      */
-    CompressionResult compressBlob(const std::string& input);
+    CompressionResult compressBlob(const std::string& input,bool includeID, bool offset32);
 
     /**
      * @param input The compressed data to decompress.
@@ -100,6 +100,16 @@ namespace CompressionAPI {
         output.append(reinterpret_cast<const char*>(&value), sizeof(T));
         ErrorHandler::logInfo("LZ77::appendValue", ErrorCodes::Compression::IC2, "appendValue complete");
     }
+
+    inline bool operator==(const Token &lhs, const Token &rhs) {
+        return lhs.offset         == rhs.offset
+            &&  lhs.length         == rhs.length
+            &&  lhs.literal        == rhs.literal
+            &&  lhs.fileIdentifier == rhs.fileIdentifier
+            &&  lhs.checksum       == rhs.checksum
+            &&  lhs.type           == rhs.type;
+    }
+
 }
 
 #endif // LZ77_H

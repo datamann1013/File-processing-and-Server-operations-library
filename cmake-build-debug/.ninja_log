@@ -43,3 +43,6 @@
 15	1648	7666829337089240	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77Tests.cpp.obj	451a198dda51a24f
 22	1658	7666840961771193	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj	d14677579b31f085
 20	1796	7666840961741180	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj	e711ce7ddaec5045
+45	2801	7666918094345382	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj	d14677579b31f085
+48	2430	7666924634748326	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj	d14677579b31f085
+43	2630	7666924634698128	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj	e711ce7ddaec5045

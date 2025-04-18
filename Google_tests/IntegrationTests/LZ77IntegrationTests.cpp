@@ -70,7 +70,7 @@ TEST(LZ77_Integration, Deserialize_CorruptedData_Throws) {
 // compressBlob + decompressBlob must return the original data.
 TEST(LZ77Integration, CompressDecompress_RoundTrip) {
     std::string data = "AAAAABBBBBCCCCCDDDDDEEEEE";
-    auto c = compressBlob(data, /*incID*/false, /*32bit*/true);
+    auto c = compressBlob(data, false, true);
     ASSERT_EQ(c.errorCode, Compression::SUCCESS);
     auto d = decompressBlob(c.data);
     ASSERT_EQ(d.errorCode, Compression::SUCCESS);

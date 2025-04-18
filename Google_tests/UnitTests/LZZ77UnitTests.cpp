@@ -102,7 +102,7 @@ TEST(LZ77Unit, Serialization_SingleToken) {
     auto s = serializeTokens({t}, true, true);
     auto v = deserializeTokens(s);
     ASSERT_EQ(v.size(),1);
-    EXPECT_EQ(v[0], t);  // operator== on Token? or field‑by‑field
+    EXPECT_EQ(v[0], t);
 }
 
 // Missing first "::" → parse failure
