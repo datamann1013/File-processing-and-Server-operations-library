@@ -4,6 +4,7 @@ project(Google_tests)
 add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 enable_testing()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Make test excecutable
 add_executable(CompressionDecompressionTests
@@ -27,12 +28,7 @@ add_executable(ErrorHandlerTests
 target_include_directories(ErrorHandlerTests PRIVATE
         ${CMAKE_SOURCE_DIR}/Errorhandler
 )
-target_link_libraries(ErrorHandlerTests
-        PRIVATE
-        ErrorHandler
-        gtest
-        gtest_main
-)
+target_link_libraries(ErrorHandlerTests ErrorHandler gtest gtest_main)
 
 add_test(NAME ErrorHandlerTests
         COMMAND ErrorHandlerTests)

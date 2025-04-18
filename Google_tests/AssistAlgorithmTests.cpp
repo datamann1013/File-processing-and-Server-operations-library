@@ -59,7 +59,6 @@ TEST(AssistAlgorithmTests, SerializeDeserializeICLog) {
     ASSERT_LOG_CONTAINS(capture, "IC3"); // start serialize
     ASSERT_LOG_CONTAINS(capture, "IC4"); // complete serialize
 
-    //TODO: Make test dor deserialize
     capture.str(""); capture.clear();
     auto v2 = CompressionAPI::deserializeTokens(bin);
     ASSERT_LOG_CONTAINS(capture, "IC5"); // start deserialize
