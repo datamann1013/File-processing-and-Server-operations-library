@@ -139,7 +139,7 @@ TEST(AssistAlgorithmTests, DeserializeTruncatedDataThrows_LZ77) {
     token.checksum = 123456;
     token.type = CompressionAPI::Token::TokenType::MATCH;
 
-    std::vector<CompressionAPI::Token> tokens = {token};
+    std::vector tokens = {token};
     const std::string serialized = serializeTokens(tokens, true, true);
 
     // Truncate the string by removing the last 5 bytes.

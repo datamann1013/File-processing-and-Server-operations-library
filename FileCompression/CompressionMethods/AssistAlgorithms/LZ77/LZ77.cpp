@@ -109,8 +109,8 @@ namespace CompressionAPI {
         bool offset32 = (data.substr(pos,f-pos) == "1");
         pos = f + 2;
         // Token count
-        uint32_t count = *reinterpret_cast<const uint32_t*>(data.data()+pos);
-        pos += sizeof(uint32_t);
+        uint32_t count = readValue<uint32_t>(data.data(), pos, totalSize);
+
         for (uint32_t i=0; i<count; ++i) {
             Token t;
             // Offset
