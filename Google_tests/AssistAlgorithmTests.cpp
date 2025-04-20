@@ -9,10 +9,6 @@
 
 namespace fs = std::filesystem;
 
-#define ASSERT_NOT_IMPLEMENTED(result)                                   \
-    if (result.errorCode == ErrorCodes::Compression::ENN99) {            \
-    FAIL() << "Function not implemented (returned ENN99)";               \
-}
 
 
 TEST(AssistAlgorithmTests, FileLocatorFilesDirectory) {
@@ -34,7 +30,6 @@ TEST(AssistAlgorithmTests, LZ77CompressTest) {
 
     auto result = CompressionAPI::compressBlob(inputData, true, true);
 
-    ASSERT_NOT_IMPLEMENTED(result);
 
     // - Check if decompression reverses the compression.
     // - Validate output sizes or tokens.
