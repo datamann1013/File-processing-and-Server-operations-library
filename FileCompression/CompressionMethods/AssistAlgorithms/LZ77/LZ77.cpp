@@ -20,7 +20,7 @@ namespace CompressionAPI {
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
 
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
-        std::string output = "S::";
+        std::string output;
 
 
         output += (includeFileId ? '1' : '0') + "::";
@@ -62,8 +62,7 @@ namespace CompressionAPI {
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens start");
 
         std::vector<Token> tokens;
-        size_t pos = 0;
-        size_t totalSize = data.size();
+        size_t pos = 0, totalSize = data.size();
 
         // Parse headerflags
         const std::string delim = "::";
@@ -92,20 +91,16 @@ namespace CompressionAPI {
         for (uint32_t i=0; i<count; ++i) {
             Token t;
 
-            // Offset
-            if (offset32) {
-                t.offset = readValue<uint32_t>(data.data(), pos, totalSize);
-            }
-            else {
-                t.offset = readValue<uint64_t>(data.data(), pos, totalSize);
-            }
+           // Offset
+        t.offset = offset32
+            ? readValue<uint32_t>(data.data(), pos, totalSize)
+            : readValue<uint64_t>(data.data(), pos, totalSize);
 
             // Length
             t.length = readValue<uint32_t>(data.data(), pos, totalSize);
 
             // Type
-            uint8_t rawType = readValue<uint8_t>(data.data(), pos, totalSize);
-            t.type = static_cast<Token::TokenType>(rawType);
+            t.type = static_cast<Token::TokenType>(readValue<uint8_t>(data.data(), pos, totalSize));
 
             // Literal
             uint32_t litLen = readValue<uint32_t>(data.data(), pos, totalSize);
