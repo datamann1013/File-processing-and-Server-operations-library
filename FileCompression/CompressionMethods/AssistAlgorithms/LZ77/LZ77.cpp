@@ -65,28 +65,24 @@ namespace CompressionAPI {
         size_t pos = 0, totalSize = data.size();
 
         // Parse headerflags
-        const std::string delim = "::";
-        auto f = data.find(delim, pos);
-        if (f == std::string::npos) {
+
+        auto readBoolFlag = [&](bool &flag) {
+            size_t sep = data.find("::", pos);
+            if (sep == std::string::npos || sep >= totalSize)
+                throw ErrorCodes::Compression::ES15;
             ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
-            throw ErrorCodes::Compression::ES15;
-        }
+            flag = data[pos] == '1';
+            pos = sep + 2;
+        };
 
-        bool includeID = (data.substr(pos, f - pos) == "1");
-        pos = f + delim.size();
-
-        f = data.find(delim, pos);
-        if (f == std::string::npos) {
-            ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
-            throw ErrorCodes::Compression::ES15;
-        }
-
-        bool offset32 = (data.substr(pos, f - pos) == "1");
-        pos = f + delim.size();
+        bool includeId, offset32;
+        readBoolFlag(includeId);
+        readBoolFlag(offset32);
 
 
         // Token count
         uint32_t count = readValue<uint32_t>(data.data(), pos, totalSize);
+        tokens.reserve(count);
 
         for (uint32_t i=0; i<count; ++i) {
             Token t;
@@ -113,7 +109,7 @@ namespace CompressionAPI {
             pos += litLen;
 
             // File ID
-            if (includeID) {
+            if (includeId) {
                 uint32_t idLen = readValue<uint32_t>(data.data(), pos, totalSize);
                 if (pos + idLen > totalSize) {
                     ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17, "Truncated fileIdentifier data");
@@ -124,7 +120,7 @@ namespace CompressionAPI {
             }
 
             t.checksum = readValue<uint32_t>(data.data(), pos, totalSize);
-            tokens.push_back(t);
+            tokens.push_back(std::move(t));
 
         }
 
@@ -136,10 +132,7 @@ namespace CompressionAPI {
     CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
 
-        const size_t inputLength = input.size();
-        size_t currentPosition = 0;
-
-        // Collects all tokens generated
+        size_t inputLength = input.size(), currentPosition = 0;
         std::vector<Token> tokens;
 
         // Process input data using sliding window / look-ahead buffer
@@ -147,17 +140,11 @@ namespace CompressionAPI {
             size_t windowStart = (currentPosition >= WINDOW_SIZE) ? currentPosition - WINDOW_SIZE : 0;
             size_t currentLookaheadSize = std::min(LOOKAHEAD_BUFFER_SIZE, inputLength - currentPosition);
 
-            // Debug output to show current scanning state.
-            std::cout << "Processing position: " << currentPosition << "\n";
-            std::cout << "Sliding window range: [" << windowStart << ", " << currentPosition - 1 << "]\n";
-            std::cout << "Lookahead buffer size: " << currentLookaheadSize << "\n";
-
             // Search longest match in sliding window.
-            size_t bestMatchLength = 0;
-            size_t bestMatchOffset = 0;
+            size_t bestMatchLength = 0, bestMatchOffset = 0;
             for (size_t searchIndex = windowStart; searchIndex < currentPosition; ++searchIndex) {
                 size_t matchLength = 0;
-                // Match far from current position.
+
                 while (matchLength < currentLookaheadSize &&
                        input[searchIndex + matchLength] == input[currentPosition + matchLength]) {
                     ++matchLength;
