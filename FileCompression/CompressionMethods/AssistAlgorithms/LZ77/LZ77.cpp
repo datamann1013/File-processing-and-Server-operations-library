@@ -20,40 +20,34 @@ namespace CompressionAPI {
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
 
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
-        std::string output;
-
-        std::string header = std::to_string(includeFileId ? 1 : 0) + "::" + std::to_string(use32BitOffset ? 1 : 0) + "::";
-        output.append(header);
+        std::string output = "S::";
 
 
-        // Write header: number of tokens (32-bit unsigned).
-        uint32_t tokenCount = static_cast<uint32_t>(tokens.size());
-        appendValue(output, tokenCount);
+        output += (includeFileId ? '1' : '0') + "::";
+        output += (use32BitOffset ? '1' : '0') + "::";
+
+
+        // Token count
+        appendValue<uint32_t>(output, static_cast<uint32_t>(tokens.size()));
 
         for (const auto &token : tokens) {
 
-            if (use32BitOffset) {
-                uint32_t offsetVal = token.offset;
-                appendValue(output, offsetVal);
-            }
+            if (use32BitOffset)
+                appendValue<uint32_t>(output, static_cast<uint32_t>(token.offset));
             else {
-                uint64_t offsetVal = token.offset;
-                appendValue(output, offsetVal);
+                appendValue<uint64_t>(output, token.offset);
             }
 
-            appendValue(output, token.length);
-
+            appendValue<uint32_t>(output, token.length);
             appendValue(output, static_cast<uint8_t>(token.type));
 
-            // First its length, then the literal data itself.
-            uint32_t literalLen = static_cast<uint32_t>(token.literal.size());
-            appendValue(output, literalLen);
+            // Literal length and data
+            appendValue<uint32_t>(output, static_cast<uint32_t>(token.literal.size()));
             output.append(token.literal);
 
             // Write file identifier
             if (includeFileId) {
-                uint32_t fileIdLen = static_cast<uint32_t>(token.fileIdentifier.size());
-                appendValue(output, fileIdLen);
+                appendValue<uint32_t>(output, static_cast<uint32_t>(token.fileIdentifier.size()));
                 output.append(token.fileIdentifier);
             }
 
@@ -144,10 +138,10 @@ namespace CompressionAPI {
     }
 
 
-    CompressionResult compressBlob(const std::string& inputData, bool includeID, bool offset32) {
+    CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
 
-        size_t inputLength = inputData.size();
+        const size_t inputLength = input.size();
         size_t currentPosition = 0;
 
         // Collects all tokens generated
@@ -170,7 +164,7 @@ namespace CompressionAPI {
                 size_t matchLength = 0;
                 // Match far from current position.
                 while (matchLength < currentLookaheadSize &&
-                       inputData[searchIndex + matchLength] == inputData[currentPosition + matchLength]) {
+                       input[searchIndex + matchLength] == input[currentPosition + matchLength]) {
                     ++matchLength;
                     // Prevent accessing beyond current position
                     if (searchIndex + matchLength >= currentPosition)
@@ -190,7 +184,7 @@ namespace CompressionAPI {
                 // TODO: Create a token for the match.
                 // Optionally include the next symbol after the match if necessary.
                 char nextSymbol = (currentPosition + bestMatchLength < inputLength)
-                                  ? inputData[currentPosition + bestMatchLength] : '\0';
+                                  ? input[currentPosition + bestMatchLength] : '\0';
                //TODO: tokens.push_back({bestMatchOffset, bestMatchLength, nextSymbol});
 
                 // Advance the currentPosition by the length of the match plus one (if nextSymbol is used).
@@ -199,7 +193,7 @@ namespace CompressionAPI {
                 // If you include the next symbol as a separate literal, you might want to add it and then advance by 1.
             } else {
                 // No match found: output a literal token.
-                std::cout << "No match, output literal: " << inputData[currentPosition] << "\n";
+                std::cout << "No match, output literal: " << input[currentPosition] << "\n";
                //TODO: tokens.push_back({0, 0, inputData[currentPosition]});
                 currentPosition += 1;
             }
