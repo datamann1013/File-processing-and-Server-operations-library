@@ -62,3 +62,12 @@
 2437	9040	7666928470066287	bin/CompressionDecompressionTests.exe	a4dd5c638180aa5d
 30	2638	7666928825077396	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj	e711ce7ddaec5045
 2638	9236	7666928851166475	bin/CompressionDecompressionTests.exe	a4dd5c638180aa5d
+105	1624	7668643681656854	CMakeFiles/ErrorHandler.dir/Errorhandler/ErrorHandler.cpp.obj	4bea7bf91918ec3a
+1624	2146	7668643701888710	bin/libErrorHandler.dll	665b0212ce40cfb1
+1624	2146	7668643701888710	libErrorHandler.dll.a	665b0212ce40cfb1
+2146	2420	7668643704626956	bin/libFileCompression.dll	14b7b0acae079460
+2146	2420	7668643704626956	libFileCompression.dll.a	14b7b0acae079460
+138	2794	7668643681975673	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/IntegrationTests/LZ77IntegrationTests.cpp.obj	d14677579b31f085
+124	3045	7668643681845504	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/UnitTests/LZZ77UnitTests.cpp.obj	e711ce7ddaec5045
+116	3167	7668643681766730	Google_tests/CMakeFiles/CompressionDecompressionTests.dir/AssistAlgorithmTests.cpp.obj	9911cb739976c9ef
+3168	10793	7668643712278504	bin/CompressionDecompressionTests.exe	a4dd5c638180aa5d

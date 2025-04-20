@@ -33,6 +33,7 @@ const char* ErrorHandler::toString(Compression code) {
         case Compression::ES14:         return "ES14";
         case Compression::ES15:         return "ES15";
         case Compression::ES16:         return "ES16";
+        case Compression::ES17:         return "ES17";
 
         case Compression::EU1:          return "EU1";
         case Compression::EU2:          return "EU2";
