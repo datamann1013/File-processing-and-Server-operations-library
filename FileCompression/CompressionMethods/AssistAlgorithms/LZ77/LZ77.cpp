@@ -159,23 +159,43 @@ namespace CompressionAPI {
             }
 
             // Token generation
-            if (bestMatchLength > 0) {
+            if (bestMatchLength > 3) {
                 std::cout << "Match found: Offset = " << bestMatchOffset
                           << ", Length = " << bestMatchLength << "\n";
-                // TODO: Create a token for the match.
-                // Optionally include the next symbol after the match if necessary.
-                char nextSymbol = (currentPosition + bestMatchLength < inputLength)
-                                  ? input[currentPosition + bestMatchLength] : '\0';
+                Token t;
+                t.offset          = bestMatchOffset;
+                t.length          = static_cast<uint32_t>(bestMatchLength);
+                t.type            = Token::TokenType::MATCH;
+                // Next symbol after the match
+                if (currentPosition + bestMatchLength < inputLength)
+                    t.literal = std::string(1, input[currentPosition + bestMatchLength]);
+                else
+                    t.literal.clear();
+
+                //Checksum
+                uint32_t cs = 0;
+                for (unsigned char c : t.literal) cs += c;
+                t.checksum = cs;
+
+                tokens.push_back(std::move(t));
+
                //TODO: tokens.push_back({bestMatchOffset, bestMatchLength, nextSymbol});
 
                 // Advance the currentPosition by the length of the match plus one (if nextSymbol is used).
                 // Adjust this based on your token scheme.
-                currentPosition += bestMatchLength;
+                currentPosition += bestMatchLength + t.literal.size();
                 // If you include the next symbol as a separate literal, you might want to add it and then advance by 1.
             } else {
                 // No match found: output a literal token.
                 std::cout << "No match, output literal: " << input[currentPosition] << "\n";
-               //TODO: tokens.push_back({0, 0, inputData[currentPosition]});
+                Token t;
+                t.offset = 0;
+                t.length = 0;
+                t.type   = Token::TokenType::LITERAL;
+                t.literal = std::string(1, input[currentPosition]);
+                uint32_t cs = static_cast<uint8_t>(input[currentPosition]);
+                t.checksum = cs;
+                tokens.push_back(std::move(t));
                 currentPosition += 1;
             }
         }
