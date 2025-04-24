@@ -46,6 +46,7 @@ TEST(LZ77_Unit, HeaderParsing_TokenCountZero) {
 // Check that serializeTokens emits correct "includeID::offset32::" header
 TEST(LZ77_Unit, Serialization_HeaderFlags) {
     const auto s = serializeTokens({}, /*incID*/false, /*32bit*/true);
+    std::cout << s.rfind("0::1::", 0);
     EXPECT_TRUE(s.rfind("0::1::", 0) == 0);
 }
 

@@ -22,9 +22,8 @@ namespace CompressionAPI {
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
         std::string output;
 
-
-        output += (includeFileId ? '1' : '0') + "::";
-        output += (use32BitOffset ? '1' : '0') + "::";
+        output += std::string(1, includeFileId ? '1' : '0') + "::";
+        output += std::string(1, use32BitOffset ? '1' : '0') + "::";
 
 
         // Token count
