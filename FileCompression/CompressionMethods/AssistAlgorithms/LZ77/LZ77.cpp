@@ -17,7 +17,8 @@ namespace CompressionAPI {
     // TODO: Package level checksum
 
 
-    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
+    std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId,
+        bool use32BitOffset, uint32_t packageID, uint32_t globalChecksum) {
 
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3,
             "serializeTokens start");
@@ -25,10 +26,12 @@ namespace CompressionAPI {
 
         output += std::string(1, includeFileId ? '1' : '0') + "::";
         output += std::string(1, use32BitOffset ? '1' : '0') + "::";
-
-
-        // Token count
+        appendValue<uint32_t>(output, packageID);
+        output += "::";
         appendValue<uint32_t>(output, static_cast<uint32_t>(tokens.size()));
+        output += "::";
+
+
 
         for (const auto &token : tokens) {
 
@@ -50,11 +53,14 @@ namespace CompressionAPI {
                 appendValue<uint32_t>(output, static_cast<uint32_t>(token.fileIdentifier.size()));
                 output.append(token.fileIdentifier);
             }
-
-            appendValue(output, token.checksum);
-            ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC4,
-                "serializeTokens complete");
+            appendValue<uint32_t>(output, token.checksum);
         }
+
+        output += "::";
+        appendValue<uint32_t>(output, globalChecksum);
+
+        ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC4,
+            "serializeTokens complete");
         return output;
     }
 
@@ -138,6 +144,8 @@ namespace CompressionAPI {
 
     CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
+        static uint32_t nextPackageID = 1;
+        uint32_t packageID = nextPackageID++;
 
         size_t inputLength = input.size(), currentPosition = 0;
         std::vector<Token> tokens;
@@ -165,12 +173,16 @@ namespace CompressionAPI {
                     bestMatchOffset = currentPosition - searchIndex;
                 }
             }
+            Token t;
+            if (includeID) {
+                t.fileIdentifier = std::to_string(packageID);
+            }
+            t.use32BitOffset = offset32;
 
             // Token generation
             if (bestMatchLength >= MIN_MATCH_LENGTH) {
                 std::cout << "Match found: Offset = " << bestMatchOffset
                           << ", Length = " << bestMatchLength << "\n";
-                Token t;
                 t.offset          = bestMatchOffset;
                 t.length          = static_cast<uint32_t>(bestMatchLength);
                 t.type            = Token::TokenType::MATCH;
@@ -196,7 +208,6 @@ namespace CompressionAPI {
             } else {
                 // No match found: output a literal token.
                 std::cout << "No match, output literal: " << input[currentPosition] << "\n";
-                Token t;
                 t.offset = 0;
                 t.length = 0;
                 t.type   = Token::TokenType::LITERAL;
@@ -206,6 +217,16 @@ namespace CompressionAPI {
                 tokens.push_back(std::move(t));
                 currentPosition += 1;
             }
+        }
+
+        if (tokens.empty()) {
+            ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
+                "Compression failed: no tokens generated.");
+            throw ErrorCodes::Compression::ES1;
+        }
+        uint32_t globalChecksum = 0;
+        for (auto &tk : tokens) {
+            globalChecksum += tk.checksum;
         }
 
         // TODO: Serialize the tokens into the final compressed output.
