@@ -8,20 +8,18 @@
 
 
 namespace CompressionAPI {
-
     constexpr size_t WINDOW_SIZE = 4096;
     constexpr size_t LOOKAHEAD_BUFFER_SIZE = 32;
-
-    // TODO: Keep a copy of the data unaltered till success
-
-    // TODO: Package level checksum
 
 
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId,
         bool use32BitOffset, uint32_t packageID, uint32_t globalChecksum) {
 
+
+
         ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3,
             "serializeTokens start");
+
         std::string output;
 
         output += std::string(1, includeFileId ? '1' : '0') + "::";
@@ -136,6 +134,7 @@ namespace CompressionAPI {
 
         }
 
+
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6,
             "deserializeTokens complete");
         return tokens;
@@ -144,111 +143,115 @@ namespace CompressionAPI {
 
     CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
-        static uint32_t nextPackageID = 1;
-        uint32_t packageID = nextPackageID++;
+        try {
+            //Store unaltered input in case of faliure
+            //TODO: Make this be returned/logged with errors
+            std::string original = input;
 
-        size_t inputLength = input.size(), currentPosition = 0;
-        std::vector<Token> tokens;
+            static uint32_t nextPackageID = 1;
+            uint32_t packageID = nextPackageID++;
 
-        // Process input data using sliding window / look-ahead buffer
-        while (currentPosition < inputLength) {
-            size_t windowStart = (currentPosition >= WINDOW_SIZE) ? currentPosition - WINDOW_SIZE : 0;
-            size_t currentLookaheadSize = std::min(LOOKAHEAD_BUFFER_SIZE, inputLength - currentPosition);
+            size_t inputLength = input.size(), currentPosition = 0;
+            std::vector<Token> tokens;
 
-            // Search longest match in sliding window.
-            size_t bestMatchLength = 0, bestMatchOffset = 0;
-            for (size_t searchIndex = windowStart; searchIndex < currentPosition; ++searchIndex) {
-                size_t matchLength = 0;
+            // Process input data using sliding window / look-ahead buffer
+            while (currentPosition < inputLength) {
+                size_t windowStart = (currentPosition >= WINDOW_SIZE) ? currentPosition - WINDOW_SIZE : 0;
+                size_t currentLookaheadSize = std::min(LOOKAHEAD_BUFFER_SIZE, inputLength - currentPosition);
 
-                while (matchLength < currentLookaheadSize &&
-                       input[searchIndex + matchLength] == input[currentPosition + matchLength]) {
-                    ++matchLength;
-                    // Prevent accessing beyond current position
-                    if (searchIndex + matchLength >= currentPosition)
-                        break;
+                // Search longest match in sliding window.
+                size_t bestMatchLength = 0, bestMatchOffset = 0;
+                for (size_t searchIndex = windowStart; searchIndex < currentPosition; ++searchIndex) {
+                    size_t matchLength = 0;
+
+                    while (matchLength < currentLookaheadSize &&
+                           input[searchIndex + matchLength] == input[currentPosition + matchLength]) {
+                        ++matchLength;
+                        // Prevent accessing beyond current position
+                        if (searchIndex + matchLength >= currentPosition)
+                            break;
+                           }
+                    // Update best match
+                    if (matchLength > bestMatchLength) {
+                        bestMatchLength = matchLength;
+                        bestMatchOffset = currentPosition - searchIndex;
+                    }
                 }
-                // Update best match
-                if (matchLength > bestMatchLength) {
-                    bestMatchLength = matchLength;
-                    bestMatchOffset = currentPosition - searchIndex;
+                Token t;
+                if (includeID) {
+                    t.fileIdentifier = std::to_string(packageID);
+                }
+                t.use32BitOffset = offset32;
+
+                // Token generation
+                if (bestMatchLength >= MIN_MATCH_LENGTH) {
+                    std::cout << "Match found: Offset = " << bestMatchOffset
+                              << ", Length = " << bestMatchLength << "\n";
+                    t.offset          = bestMatchOffset;
+                    t.length          = static_cast<uint32_t>(bestMatchLength);
+                    t.type            = Token::TokenType::MATCH;
+                    // Next symbol after the match
+                    if (currentPosition + bestMatchLength < inputLength)
+                        t.literal = std::string(1, input[currentPosition + bestMatchLength]);
+                    else
+                        t.literal.clear();
+
+                    //Checksum
+                    uint32_t cs = static_cast<uint32_t>(t.offset) + t.length;
+                    for (unsigned char c : t.literal) cs += c;
+                    t.checksum = cs;
+
+                    tokens.push_back(std::move(t));
+
+                    // Advance the currentPosition by the length of the match plus one (if nextSymbol is used).
+                    // Adjust this based on your token scheme.
+                    currentPosition += bestMatchLength + t.literal.size();
+                    // If you include the next symbol as a separate literal, you might want to add it and then advance by 1.
+                } else {
+                    // No match found: output a literal token.
+                    std::cout << "No match, output literal: " << input[currentPosition] << "\n";
+                    t.offset = 0;
+                    t.length = 0;
+                    t.type   = Token::TokenType::LITERAL;
+                    t.literal = std::string(1, input[currentPosition]);
+                    uint32_t cs = static_cast<uint8_t>(input[currentPosition]);
+                    t.checksum = cs;
+                    tokens.push_back(std::move(t));
+                    currentPosition += 1;
                 }
             }
-            Token t;
-            if (includeID) {
-                t.fileIdentifier = std::to_string(packageID);
+
+            if (tokens.empty()) {
+                ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
+                    "Compression failed: no tokens generated.");
+                throw ErrorCodes::Compression::ES1;
             }
-            t.use32BitOffset = offset32;
+            uint32_t globalChecksum = 0;
+            for (auto &tk : tokens) {
+                globalChecksum += tk.checksum;
+            }
 
-            // Token generation
-            if (bestMatchLength >= MIN_MATCH_LENGTH) {
-                std::cout << "Match found: Offset = " << bestMatchOffset
-                          << ", Length = " << bestMatchLength << "\n";
-                t.offset          = bestMatchOffset;
-                t.length          = static_cast<uint32_t>(bestMatchLength);
-                t.type            = Token::TokenType::MATCH;
-                // Next symbol after the match
-                if (currentPosition + bestMatchLength < inputLength)
-                    t.literal = std::string(1, input[currentPosition + bestMatchLength]);
-                else
-                    t.literal.clear();
+            ErrorHandler::logInfo("CompressionAPI::compressBlob", ErrorCodes::Compression::IC7,
+        "Global checksum = " + std::to_string(globalChecksum));
 
-                //Checksum
-                uint32_t cs = static_cast<uint32_t>(t.offset) + t.length;
-                for (unsigned char c : t.literal) cs += c;
-                t.checksum = cs;
+            result.data = serializeTokens(tokens, includeID, offset32, packageID, globalChecksum);
 
-                tokens.push_back(std::move(t));
-
-               //TODO: tokens.push_back({bestMatchOffset, bestMatchLength, nextSymbol});
-
-                // Advance the currentPosition by the length of the match plus one (if nextSymbol is used).
-                // Adjust this based on your token scheme.
-                currentPosition += bestMatchLength + t.literal.size();
-                // If you include the next symbol as a separate literal, you might want to add it and then advance by 1.
+            //TODO: Proper check. For example checksum check?
+            if (!result.data.empty()) {
+                result.errorCode = ErrorCodes::Compression::SUCCESS;
             } else {
-                // No match found: output a literal token.
-                std::cout << "No match, output literal: " << input[currentPosition] << "\n";
-                t.offset = 0;
-                t.length = 0;
-                t.type   = Token::TokenType::LITERAL;
-                t.literal = std::string(1, input[currentPosition]);
-                uint32_t cs = static_cast<uint8_t>(input[currentPosition]);
-                t.checksum = cs;
-                tokens.push_back(std::move(t));
-                currentPosition += 1;
+                ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
+                                         "Compression failed: Empty output generated.");
+                result.errorCode = ErrorCodes::Compression::ES1; 
             }
+        } catch (ErrorCodes::Compression code) {
+            result.data = ""; // Or original?
+            result.errorCode = code;
         }
-
-        if (tokens.empty()) {
-            ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
-                "Compression failed: no tokens generated.");
-            throw ErrorCodes::Compression::ES1;
-        }
-        uint32_t globalChecksum = 0;
-        for (auto &tk : tokens) {
-            globalChecksum += tk.checksum;
-        }
-
-        // TODO: Serialize the tokens into the final compressed output.
-        // Replace the stub below with your actual serialization logic.
-        result.data = serializeTokens(tokens, includeID, offset32);
-
-        // Indicate a successful operation if tokens were generated.
-        // Once fully implemented, check for errors and update errorCode accordingly.
-        if (!result.data.empty()) {
-            result.errorCode = ErrorCodes::Compression::SUCCESS;
-        } else {
-            ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
-                                     "Compression failed: Empty output generated.");
-            result.errorCode = ErrorCodes::Compression::ES1; // Use an appropriate error code
-        }
-
         return result;
     }
 
-
     CompressionResult decompressBlob(const std::string& input) {
-        CompressionResult result;
 
         // TODO: Implement LZ77 decompression algorithm.
         // Steps to follow:
@@ -256,11 +259,47 @@ namespace CompressionAPI {
         // 2. Reconstruct the original data using a sliding window.
         // 3. Log errors using ErrorHandler::logError if data integrity is compromised.
 
-        ErrorHandler::logError("CompressionAPI::decompressBlob", ErrorCodes::Compression::ENN99,
-                                 "decompressBlob: Not implemented.");
-        result.errorCode = ErrorCodes::Compression::ENN99;
-        result.data = ""; // No decompressed data produced.
+        CompressionResult result;
+        try {
+            auto tokens = deserializeTokens(input);
+            std::string output;
+            output.reserve(/*estimate*/);
 
+            for (const auto &t : tokens) {
+                switch (t.type) {
+                    case Token::TokenType::LITERAL:
+                        output += t.literal;
+                    break;
+                    case Token::TokenType::MATCH: {
+                        // Offset must not exceed current output size
+                        if (t.offset == 0 || t.offset > output.size()) {
+                            throw ErrorCodes::Compression::ES10; // Invalid offset
+                        }
+                        size_t start = output.size() - t.offset;
+                        // Copy match bytes
+                        for (uint32_t i = 0; i < t.length; ++i) {
+                            output += output[start + i];
+                        }
+                        // Append next literal
+                        output += t.literal;
+                        break;
+                    }
+                    case Token::TokenType::END_OF_BLOCK:
+                        // Optionally break early
+                            goto done;
+                    default:
+                        throw ErrorCodes::Compression::ES12; // Unsupported token
+                }
+            }
+            done:
+                result.data = std::move(output);
+            result.errorCode = ErrorCodes::Compression::SUCCESS;
+        } catch (ErrorCodes::Compression code) {
+            ErrorHandler::logError("decompressBlob", code, "LZ77 decompression failed");
+            result.data = ""; // Or original?
+            result.errorCode = code;
+        }
         return result;
     }
+
 }

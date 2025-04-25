@@ -25,9 +25,9 @@ namespace ErrorCodes {
         ES7,  // Data too short for file identifier (LZ77)
         ES8,  // Data too short for checksum (LZ77)
         ES9,  // Not enough data to read value (LZ77)
-        ES10, // Data too short for offset (LZ77)
+        ES10, // Data too short or invalid for offset (LZ77)
         ES11, // Data too short for length (LZ77)
-        ES12, // Data too short for token type (LZ77)
+        ES12, // Data too short or invalid for token type (LZ77)
         ES13, // Data too short for literal length (LZ77)
         ES14, // Data too short for file identifier length (LZ77)
         ES15,  // Missing start header parameters.
@@ -49,6 +49,7 @@ namespace ErrorCodes {
         IC4,  // SerializeTokens complete
         IC5,  // DeserializeTokens start
         IC6,  // DeserializeTokens complete
+        IC7,  // Info logging
 
         ENN99 // Not implemented
     };
