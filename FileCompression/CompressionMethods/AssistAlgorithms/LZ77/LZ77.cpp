@@ -69,7 +69,6 @@ namespace CompressionAPI {
 
         std::vector<Token> tokens;
         size_t pos = 0, totalSize = data.size();
-
         // Parse header flags
 
         auto readBoolFlag = [&](bool &flag) {
@@ -152,7 +151,8 @@ namespace CompressionAPI {
     CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
         try {
-
+            std::string &out = result.data;
+            out.reserve(input.size() + 64);
 
             //Store unaltered input in case of faliure
             //TODO: Make this be returned/logged with errors
