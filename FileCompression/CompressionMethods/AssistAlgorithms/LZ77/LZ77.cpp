@@ -134,6 +134,14 @@ namespace CompressionAPI {
 
         }
 
+        uint32_t parsedGlobal = readValue<uint32_t>(data.data(), pos, totalSize);
+        uint32_t sum = 0;
+        for (auto &tk : tokens) sum += tk.checksum;
+        if (sum != parsedGlobal) {
+            ErrorHandler::logError("deserializeTokens", ErrorCodes::Compression::ES8,
+                "Global checksum mismatch");
+            throw ErrorCodes::Compression::ES8;
+        }
 
         ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6,
             "deserializeTokens complete");
@@ -144,6 +152,8 @@ namespace CompressionAPI {
     CompressionResult compressBlob(const std::string& input, const bool includeID, const bool offset32) {
         CompressionResult result;
         try {
+
+
             //Store unaltered input in case of faliure
             //TODO: Make this be returned/logged with errors
             std::string original = input;
@@ -242,7 +252,7 @@ namespace CompressionAPI {
             } else {
                 ErrorHandler::logError("CompressionAPI::compressBlob", ErrorCodes::Compression::ES1,
                                          "Compression failed: Empty output generated.");
-                result.errorCode = ErrorCodes::Compression::ES1; 
+                result.errorCode = ErrorCodes::Compression::ES1;
             }
         } catch (ErrorCodes::Compression code) {
             result.data = ""; // Or original?

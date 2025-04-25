@@ -23,7 +23,7 @@ namespace ErrorCodes {
         ES5,  // Data too small to contain token count (LZ77)
         ES6,  // Data too short for literal (LZ77)
         ES7,  // Data too short for file identifier (LZ77)
-        ES8,  // Data too short for checksum (LZ77)
+        ES8,  // Data too short or invalid for checksum (LZ77)
         ES9,  // Not enough data to read value (LZ77)
         ES10, // Data too short or invalid for offset (LZ77)
         ES11, // Data too short for length (LZ77)
