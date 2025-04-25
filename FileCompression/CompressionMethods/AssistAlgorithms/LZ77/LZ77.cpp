@@ -71,6 +71,21 @@ namespace CompressionAPI {
         size_t pos = 0, totalSize = data.size();
         // Parse header flags
 
+        constexpr size_t MIN_HEADER =
+        /* flag */       1 + 2
+      + /* flag */       1 + 2
+      + /* uint32_t */   sizeof(uint32_t) + 2
+      + /* uint32_t */   sizeof(uint32_t) + 2;
+
+        if (totalSize < MIN_HEADER) {
+            ErrorHandler::logError("LZ77::deserializeTokens",
+                ErrorCodes::Compression::ES15,
+                "Input too short for header (need at least "
+                + std::to_string(MIN_HEADER) + " bytes, got "
+                + std::to_string(totalSize) + ")");
+            throw ErrorCodes::Compression::ES15;
+        }
+
         auto readBoolFlag = [&](bool &flag) {
             size_t sep = data.find("::", pos);
             if (sep == std::string::npos || sep >= totalSize) {
