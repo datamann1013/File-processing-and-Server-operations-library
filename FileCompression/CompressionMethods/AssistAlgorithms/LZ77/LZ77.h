@@ -11,6 +11,8 @@
 
 namespace CompressionAPI {
 
+    constexpr size_t MIN_MATCH_LENGTH = 2;
+
     // Structure to hold the result from the compression/decompression functions.
     struct CompressionResult {
         ErrorCodes::Compression errorCode;

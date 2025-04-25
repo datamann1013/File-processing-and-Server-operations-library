@@ -167,7 +167,7 @@ namespace CompressionAPI {
             }
 
             // Token generation
-            if (bestMatchLength > 2) {
+            if (bestMatchLength >= MIN_MATCH_LENGTH) {
                 std::cout << "Match found: Offset = " << bestMatchOffset
                           << ", Length = " << bestMatchLength << "\n";
                 Token t;
