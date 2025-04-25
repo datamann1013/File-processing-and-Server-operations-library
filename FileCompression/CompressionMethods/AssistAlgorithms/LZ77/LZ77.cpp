@@ -19,7 +19,8 @@ namespace CompressionAPI {
 
     std::string serializeTokens(const std::vector<Token>& tokens, bool includeFileId, bool use32BitOffset) {
 
-        ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3, "serializeTokens start");
+        ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC3,
+            "serializeTokens start");
         std::string output;
 
         output += std::string(1, includeFileId ? '1' : '0') + "::";
@@ -51,25 +52,30 @@ namespace CompressionAPI {
             }
 
             appendValue(output, token.checksum);
-            ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC4, "serializeTokens complete");
+            ErrorHandler::logInfo("LZ77::serializeTokens", ErrorCodes::Compression::IC4,
+                "serializeTokens complete");
         }
         return output;
     }
 
     std::vector<Token> deserializeTokens(const std::string& data) {
 
-        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5, "deserializeTokens start");
+        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC5,
+            "deserializeTokens start");
 
         std::vector<Token> tokens;
         size_t pos = 0, totalSize = data.size();
 
-        // Parse headerflags
+        // Parse header flags
 
         auto readBoolFlag = [&](bool &flag) {
             size_t sep = data.find("::", pos);
-            if (sep == std::string::npos || sep >= totalSize)
+            if (sep == std::string::npos || sep >= totalSize) {
+                ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15,
+                    "Header parameters are missing");
                 throw ErrorCodes::Compression::ES15;
-            ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES15, "Header parameters are missing");
+            }
+
             flag = data[pos] == '1';
             pos = sep + 2;
         };
@@ -80,7 +86,7 @@ namespace CompressionAPI {
 
 
         // Token count
-        uint32_t count = readValue<uint32_t>(data.data(), pos, totalSize);
+        auto count = readValue<uint32_t>(data.data(), pos, totalSize);
         tokens.reserve(count);
 
         for (uint32_t i=0; i<count; ++i) {
@@ -98,20 +104,21 @@ namespace CompressionAPI {
             t.type = static_cast<Token::TokenType>(readValue<uint8_t>(data.data(), pos, totalSize));
 
             // Literal
-            uint32_t litLen = readValue<uint32_t>(data.data(), pos, totalSize);
+            auto litLen = readValue<uint32_t>(data.data(), pos, totalSize);
             if (pos + litLen > totalSize) {
-                ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17, "Truncated literal data");
+                ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17,
+                    "Truncated literal data");
                 throw ErrorCodes::Compression::ES17;
-
             }
             t.literal = data.substr(pos, litLen);
             pos += litLen;
 
             // File ID
             if (includeId) {
-                uint32_t idLen = readValue<uint32_t>(data.data(), pos, totalSize);
+                auto idLen = readValue<uint32_t>(data.data(), pos, totalSize);
                 if (pos + idLen > totalSize) {
-                    ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17, "Truncated fileIdentifier data");
+                    ErrorHandler::logError("LZ77::deserializeTokens", ErrorCodes::Compression::ES17,
+                        "Truncated fileIdentifier data");
                     throw ErrorCodes::Compression::ES17;
                 }
                 t.fileIdentifier = data.substr(pos, idLen);
@@ -123,7 +130,8 @@ namespace CompressionAPI {
 
         }
 
-        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6, "deserializeTokens complete");
+        ErrorHandler::logInfo("LZ77::deserializeTokens", ErrorCodes::Compression::IC6,
+            "deserializeTokens complete");
         return tokens;
     }
 
@@ -159,7 +167,7 @@ namespace CompressionAPI {
             }
 
             // Token generation
-            if (bestMatchLength > 3) {
+            if (bestMatchLength > 2) {
                 std::cout << "Match found: Offset = " << bestMatchOffset
                           << ", Length = " << bestMatchLength << "\n";
                 Token t;
@@ -173,7 +181,7 @@ namespace CompressionAPI {
                     t.literal.clear();
 
                 //Checksum
-                uint32_t cs = 0;
+                uint32_t cs = static_cast<uint32_t>(t.offset) + t.length;
                 for (unsigned char c : t.literal) cs += c;
                 t.checksum = cs;
 
